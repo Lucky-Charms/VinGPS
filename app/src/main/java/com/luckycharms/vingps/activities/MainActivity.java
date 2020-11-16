@@ -22,4 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public void peyton_test() {
         return 0;
     }
+  
+    public void kamit(int test){
+        test = 0;
+    }
 }
