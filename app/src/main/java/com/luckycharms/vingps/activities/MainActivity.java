@@ -14,7 +14,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    int peyton_test() {
+    public void testGarhett() {
+        int test = 0;
+
+    }
+  
+    public void peyton_test() {
         return 0;
     }
 }
