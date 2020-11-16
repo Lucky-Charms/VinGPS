@@ -12,8 +12,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void testGarhett() {
+        int test = 0;
 
     }
+  
+    public void peyton_test() {
+        return 0;
+    }
+  
     public void kamit(int test){
         test = 0;
     }
