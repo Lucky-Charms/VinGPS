@@ -26,7 +26,8 @@ public final class Car implements Model {
   public static final QueryField COLOR = field("color");
   public static final QueryField PRICE = field("price");
   public static final QueryField VIN = field("vin");
-  public static final QueryField GPS = field("gps");
+  public static final QueryField LAT = field("lat");
+  public static final QueryField LON = field("lon");
   public static final QueryField STATUS = field("status");
   public static final QueryField IMAGE_URL = field("imageUrl");
   public static final QueryField CLIENT = field("carClientId");
@@ -36,7 +37,8 @@ public final class Car implements Model {
   private final @ModelField(targetType="String") String color;
   private final @ModelField(targetType="String") String price;
   private final @ModelField(targetType="String") String vin;
-  private final @ModelField(targetType="String") String gps;
+  private final @ModelField(targetType="String") String lat;
+  private final @ModelField(targetType="String") String lon;
   private final @ModelField(targetType="String") String status;
   private final @ModelField(targetType="String") String imageUrl;
   private final @ModelField(targetType="Client") @BelongsTo(targetName = "carClientId", type = Client.class) Client client;
@@ -64,8 +66,12 @@ public final class Car implements Model {
       return vin;
   }
   
-  public String getGps() {
-      return gps;
+  public String getLat() {
+      return lat;
+  }
+  
+  public String getLon() {
+      return lon;
   }
   
   public String getStatus() {
@@ -80,14 +86,15 @@ public final class Car implements Model {
       return client;
   }
   
-  private Car(String id, String make, String model, String color, String price, String vin, String gps, String status, String imageUrl, Client client) {
+  private Car(String id, String make, String model, String color, String price, String vin, String lat, String lon, String status, String imageUrl, Client client) {
     this.id = id;
     this.make = make;
     this.model = model;
     this.color = color;
     this.price = price;
     this.vin = vin;
-    this.gps = gps;
+    this.lat = lat;
+    this.lon = lon;
     this.status = status;
     this.imageUrl = imageUrl;
     this.client = client;
@@ -107,7 +114,8 @@ public final class Car implements Model {
               ObjectsCompat.equals(getColor(), car.getColor()) &&
               ObjectsCompat.equals(getPrice(), car.getPrice()) &&
               ObjectsCompat.equals(getVin(), car.getVin()) &&
-              ObjectsCompat.equals(getGps(), car.getGps()) &&
+              ObjectsCompat.equals(getLat(), car.getLat()) &&
+              ObjectsCompat.equals(getLon(), car.getLon()) &&
               ObjectsCompat.equals(getStatus(), car.getStatus()) &&
               ObjectsCompat.equals(getImageUrl(), car.getImageUrl()) &&
               ObjectsCompat.equals(getClient(), car.getClient());
@@ -123,7 +131,8 @@ public final class Car implements Model {
       .append(getColor())
       .append(getPrice())
       .append(getVin())
-      .append(getGps())
+      .append(getLat())
+      .append(getLon())
       .append(getStatus())
       .append(getImageUrl())
       .append(getClient())
@@ -141,7 +150,8 @@ public final class Car implements Model {
       .append("color=" + String.valueOf(getColor()) + ", ")
       .append("price=" + String.valueOf(getPrice()) + ", ")
       .append("vin=" + String.valueOf(getVin()) + ", ")
-      .append("gps=" + String.valueOf(getGps()) + ", ")
+      .append("lat=" + String.valueOf(getLat()) + ", ")
+      .append("lon=" + String.valueOf(getLon()) + ", ")
       .append("status=" + String.valueOf(getStatus()) + ", ")
       .append("imageUrl=" + String.valueOf(getImageUrl()) + ", ")
       .append("client=" + String.valueOf(getClient()))
@@ -182,6 +192,7 @@ public final class Car implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -193,7 +204,8 @@ public final class Car implements Model {
       color,
       price,
       vin,
-      gps,
+      lat,
+      lon,
       status,
       imageUrl,
       client);
@@ -206,7 +218,8 @@ public final class Car implements Model {
     BuildStep color(String color);
     BuildStep price(String price);
     BuildStep vin(String vin);
-    BuildStep gps(String gps);
+    BuildStep lat(String lat);
+    BuildStep lon(String lon);
     BuildStep status(String status);
     BuildStep imageUrl(String imageUrl);
     BuildStep client(Client client);
@@ -220,7 +233,8 @@ public final class Car implements Model {
     private String color;
     private String price;
     private String vin;
-    private String gps;
+    private String lat;
+    private String lon;
     private String status;
     private String imageUrl;
     private Client client;
@@ -235,7 +249,8 @@ public final class Car implements Model {
           color,
           price,
           vin,
-          gps,
+          lat,
+          lon,
           status,
           imageUrl,
           client);
@@ -272,8 +287,14 @@ public final class Car implements Model {
     }
     
     @Override
-     public BuildStep gps(String gps) {
-        this.gps = gps;
+     public BuildStep lat(String lat) {
+        this.lat = lat;
+        return this;
+    }
+    
+    @Override
+     public BuildStep lon(String lon) {
+        this.lon = lon;
         return this;
     }
     
@@ -318,14 +339,15 @@ public final class Car implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String make, String model, String color, String price, String vin, String gps, String status, String imageUrl, Client client) {
+    private CopyOfBuilder(String id, String make, String model, String color, String price, String vin, String lat, String lon, String status, String imageUrl, Client client) {
       super.id(id);
       super.make(make)
         .model(model)
         .color(color)
         .price(price)
         .vin(vin)
-        .gps(gps)
+        .lat(lat)
+        .lon(lon)
         .status(status)
         .imageUrl(imageUrl)
         .client(client);
@@ -357,8 +379,13 @@ public final class Car implements Model {
     }
     
     @Override
-     public CopyOfBuilder gps(String gps) {
-      return (CopyOfBuilder) super.gps(gps);
+     public CopyOfBuilder lat(String lat) {
+      return (CopyOfBuilder) super.lat(lat);
+    }
+    
+    @Override
+     public CopyOfBuilder lon(String lon) {
+      return (CopyOfBuilder) super.lon(lon);
     }
     
     @Override
