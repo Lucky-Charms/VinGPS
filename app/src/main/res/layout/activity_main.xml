@@ -79,4 +79,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/passwordLoginInput"
         app:layout_constraintTop_toBottomOf="@+id/loginTitle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

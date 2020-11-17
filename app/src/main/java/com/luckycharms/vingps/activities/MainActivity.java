@@ -10,6 +10,8 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
@@ -121,5 +123,6 @@ public class MainActivity extends AppCompatActivity {
                 },
                 error -> Log.e("Amplify.confirm", error.toString())
         );
+
     }
 }
