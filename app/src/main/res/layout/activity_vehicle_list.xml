@@ -6,4 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".activities.VehicleListActivity">
 
+    <Button
+        android:id="@+id/carSearchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Search"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/carSearchBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/carSearchBar"
+        app:layout_constraintTop_toTopOf="@+id/carSearchBar" />
+
+    <EditText
+        android:id="@+id/carSearchBar"
+        android:layout_width="217dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Find a Car"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/carSearchButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <Spinner
+        android:id="@+id/carSearchSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/carSearchButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/carSearchBar"
+        app:layout_constraintTop_toBottomOf="@+id/carSearchBar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/carSearchRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carSearchSpinner"
+        app:layout_constraintVertical_bias="0.466" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,13 +17,24 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-        Button logoutButton = FeedActivity.this.findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener((v -> {
+        // Adding Event Listeners
+        addLogoutButtonListener();
+        addFindCarButtonListener();
+    }
+
+    public void addLogoutButtonListener() {
+        ((Button) findViewById(R.id.logoutButton)).setOnClickListener((v -> {
             Amplify.Auth.signOut(
                     () -> Log.i("Amplify.logout", "Logged out Successfully"),
                     error -> Log.e("Amplify.logout", error.toString())
             );
             startActivity(new Intent(FeedActivity.this, MainActivity.class));
         }));
+    }
+
+    public void addFindCarButtonListener() {
+        ((Button) findViewById(R.id.findCarButton)).setOnClickListener(view -> {
+            startActivity(new Intent(FeedActivity.this, VehicleListActivity.class));
+        });
     }
 }

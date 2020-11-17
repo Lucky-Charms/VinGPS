@@ -44,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         configureAws();
-//        mockUsers();
-//        verifyMockUsers();
+
+        // Adding Event Listeners
         addLoginListener();
+
         getIsSignedIn();
     }
 
@@ -100,29 +101,5 @@ public class MainActivity extends AppCompatActivity {
                     error -> Log.e("Amplify.login", error.toString())
             );
         });
-    }
-
-    public void mockUsers() {
-        Amplify.Auth.signUp(
-                "m.acode@outlook.com",
-                "123456789",
-                AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.email(), "m.acode@outlook.com").build(),
-                result -> {
-                    Log.i("Amplify.signup", result.toString());
-                },
-                error -> Log.e("Amplify.signup", error.toString())
-        );
-    }
-
-    public void verifyMockUsers() {
-        Amplify.Auth.confirmSignUp(
-                "m.acode@outlook.com",
-                "505111",
-                result -> {
-                    Log.i("Amplify.confirm", result.toString());
-                },
-                error -> Log.e("Amplify.confirm", error.toString())
-        );
-
     }
 }
