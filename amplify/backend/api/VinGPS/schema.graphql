@@ -5,7 +5,8 @@ type Car @model {
   color: String
   price: String
   vin: String
-  gps: String
+  lat: String
+  lon: String
   status: String
   imageUrl: String
   lastUserCheckedOut: User
