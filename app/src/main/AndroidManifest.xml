@@ -9,14 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VinGPS">
-        <activity android:name=".activities.ClientDetailActivity"></activity>
+        <activity android:name=".activities.FeedActivity"></activity>
+        <activity android:name=".activities.ClientDetailActivity" />
         <activity android:name=".activities.VehicleLocationActivity" />
         <activity android:name=".activities.VehicleListActivity" />
         <activity android:name=".activities.VehicleDetailActivity" />
         <activity android:name=".activities.UpdateUserActivity" />
         <activity android:name=".activities.CreateClientActivity" />
-        <activity android:name=".activities.FeedActivity" />
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
