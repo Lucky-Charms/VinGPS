@@ -15,10 +15,10 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the User type in your schema. */
+/** This is an auto generated class representing the SalesPerson type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Users")
-public final class User implements Model {
+@ModelConfig(pluralName = "SalesPeople")
+public final class SalesPerson implements Model {
   public static final QueryField ID = field("id");
   public static final QueryField EMAIL = field("email");
   public static final QueryField FIRST_NAME = field("firstName");
@@ -49,7 +49,9 @@ public final class User implements Model {
       return phone;
   }
   
-  private User(String id, String email, String firstName, String lastName, String phone) {
+
+  private SalesPerson(String id, String email, String firstName, String lastName, String phone) {
+
     this.id = id;
     this.email = email;
     this.firstName = firstName;
@@ -64,12 +66,12 @@ public final class User implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      User user = (User) obj;
-      return ObjectsCompat.equals(getId(), user.getId()) &&
-              ObjectsCompat.equals(getEmail(), user.getEmail()) &&
-              ObjectsCompat.equals(getFirstName(), user.getFirstName()) &&
-              ObjectsCompat.equals(getLastName(), user.getLastName()) &&
-              ObjectsCompat.equals(getPhone(), user.getPhone());
+      SalesPerson salesPerson = (SalesPerson) obj;
+      return ObjectsCompat.equals(getId(), salesPerson.getId()) &&
+              ObjectsCompat.equals(getEmail(), salesPerson.getEmail()) &&
+              ObjectsCompat.equals(getFirstName(), salesPerson.getFirstName()) &&
+              ObjectsCompat.equals(getLastName(), salesPerson.getLastName()) &&
+              ObjectsCompat.equals(getPhone(), salesPerson.getPhone());
       }
   }
   
@@ -88,7 +90,7 @@ public final class User implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("User {")
+      .append("SalesPerson {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("email=" + String.valueOf(getEmail()) + ", ")
       .append("firstName=" + String.valueOf(getFirstName()) + ", ")
@@ -111,7 +113,7 @@ public final class User implements Model {
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
    */
-  public static User justId(String id) {
+  public static SalesPerson justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
     } catch (Exception exception) {
@@ -121,7 +123,7 @@ public final class User implements Model {
               "creating a new object, use the standard builder method and leave the ID field blank."
       );
     }
-    return new User(
+    return new SalesPerson(
       id,
       null,
       null,
@@ -143,7 +145,7 @@ public final class User implements Model {
   
 
   public interface BuildStep {
-    User build();
+    SalesPerson build();
     BuildStep id(String id) throws IllegalArgumentException;
     BuildStep firstName(String firstName);
     BuildStep lastName(String lastName);
@@ -158,10 +160,10 @@ public final class User implements Model {
     private String lastName;
     private String phone;
     @Override
-     public User build() {
+     public SalesPerson build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new User(
+        return new SalesPerson(
           id,
           email,
           firstName,
