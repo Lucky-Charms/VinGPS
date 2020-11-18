@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.luckycharms.vingps">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -9,14 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VinGPS">
-        <activity android:name=".activities.ClientDetailActivity"></activity>
-        <activity android:name=".activities.VehicleLocationActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <activity android:name=".activities.ClientDetailActivity" />
         <activity android:name=".activities.VehicleListActivity" />
         <activity android:name=".activities.VehicleDetailActivity" />
         <activity android:name=".activities.UpdateUserActivity" />
         <activity android:name=".activities.CreateClientActivity" />
         <activity android:name=".activities.FeedActivity" />
-        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.VicLocationActivity"/>
+        <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
