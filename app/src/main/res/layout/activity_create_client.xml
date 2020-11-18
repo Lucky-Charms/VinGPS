@@ -6,4 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".activities.CreateClientActivity">
 
+    <TextView
+        android:id="@+id/clientLicenseNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="License Number"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientLicenseInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientLicenseInput"
+        app:layout_constraintStart_toStartOf="@+id/clientLicenseInput" />
+
+    <TextView
+        android:id="@+id/clientSalesPersonTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Sales Person"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientSalesPersonInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientSalesPersonInput"
+        app:layout_constraintStart_toStartOf="@+id/clientSalesPersonInput" />
+
+    <TextView
+        android:id="@+id/clientFirstNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="First Name"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientFirstNameInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientFirstNameInput"
+        app:layout_constraintStart_toStartOf="@+id/clientFirstNameInput" />
+
+    <TextView
+        android:id="@+id/clientLastNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Last Name"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientLastNameInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientLastNameInput"
+        app:layout_constraintStart_toStartOf="@+id/clientLastNameInput" />
+
+    <TextView
+        android:id="@+id/clientEmailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Email"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientEmailInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientEmailInput"
+        app:layout_constraintStart_toStartOf="@+id/clientEmailInput" />
+
+    <TextView
+        android:id="@+id/clientPhoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Phone Number"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientPhoneInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientPhoneInput"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/clientPhoneInput" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Client Information"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/clientFirstNameInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientFirstNameInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/clientFirstNameInput"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/clientFirstNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/clientLastNameInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientLastNameInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/clientLastNameInput"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/clientLastNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/clientEmailInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientEmailInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/clientEmailInput"
+        app:layout_constraintTop_toBottomOf="@+id/clientFirstNameInput" />
+
+    <EditText
+        android:id="@+id/clientEmailInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/clientPhoneInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientPhoneInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/clientPhoneInput"
+        app:layout_constraintTop_toBottomOf="@+id/clientLastNameInput" />
+
+    <EditText
+        android:id="@+id/clientPhoneInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/clientSalesPersonInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientSalesPersonInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/clientSalesPersonInput"
+        app:layout_constraintTop_toBottomOf="@+id/clientEmailInput" />
+
+    <EditText
+        android:id="@+id/clientLicenseInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/createClientButton"
+        app:layout_constraintEnd_toEndOf="@+id/createClientButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/createClientButton"
+        app:layout_constraintTop_toBottomOf="@+id/clientSalesPersonInput" />
+
+    <EditText
+        android:id="@+id/clientSalesPersonInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/clientLicenseInput"
+        app:layout_constraintEnd_toEndOf="@+id/clientLicenseInput"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/clientLicenseInput"
+        app:layout_constraintTop_toBottomOf="@+id/clientPhoneInput" />
+
+    <Button
+        android:id="@+id/createClientButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Client"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientLicenseInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>
