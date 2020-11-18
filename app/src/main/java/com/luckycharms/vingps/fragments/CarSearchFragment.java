@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.amplifyframework.datastore.generated.model.Car;
 import com.luckycharms.vingps.R;
 
 /**
@@ -23,12 +24,14 @@ public class CarSearchFragment extends Fragment {
     private static final String ARG_PARAM2 = "make";
     private static final String ARG_PARAM3 = "model";
     private static final String ARG_PARAM4 = "distance";
+    private static final String ARG_PARAM5 = "status";
 
     // TODO: Rename and change types of parameters
     private String mImageURL;
     private String mMake;
     private String mModel;
     private String mDistance;
+    private String mStatus;
 
     public CarSearchFragment() {
         // Required empty public constructor
@@ -43,13 +46,14 @@ public class CarSearchFragment extends Fragment {
      * @return A new instance of fragment CarSearchFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CarSearchFragment newInstance(String param1, String param2, String param3, String param4) {
+    public static CarSearchFragment newInstance(String param1, String param2, String param3, String param4, String param5) {
         CarSearchFragment fragment = new CarSearchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
-        args.putString(ARG_PARAM3, param2);
-        args.putString(ARG_PARAM4, param2);
+        args.putString(ARG_PARAM3, param3);
+        args.putString(ARG_PARAM4, param4);
+        args.putString(ARG_PARAM5, param5);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,6 +66,7 @@ public class CarSearchFragment extends Fragment {
             mMake = getArguments().getString(ARG_PARAM2);
             mModel = getArguments().getString(ARG_PARAM3);
             mDistance = getArguments().getString(ARG_PARAM4);
+            mStatus = getArguments().getString(ARG_PARAM5);
         }
     }
 

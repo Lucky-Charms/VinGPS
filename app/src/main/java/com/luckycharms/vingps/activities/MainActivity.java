@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Amplify.login", "Handler: They are not logged in");
             } else if (message.arg1 == 1) {
                 Log.i("Amplify.login", "Handler: They were logged in");
-                startActivity(new Intent(MainActivity.this, FeedActivity.class));
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
             } else {
                 Log.i("Amplify.login", "Send true or false");
             }
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     password,
                     result -> {
                         Log.i("Amplify.login", result.isSignInComplete() ? "Login succeeded" : "Login not complete");
-                        startActivity(new Intent(MainActivity.this, FeedActivity.class));
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
                     },
                     error -> Log.e("Amplify.login", error.toString())
             );

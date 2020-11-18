@@ -148,7 +148,7 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
     }
 
     public void initializeRecyclerView() {
-        recyclerView = findViewById(R.id.carSearchRecyclerView);
+        recyclerView = findViewById(R.id.checkedOutRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new CarSearchRecyclerViewAdapter(cars, this));
     }
