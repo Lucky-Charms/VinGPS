@@ -7,15 +7,14 @@ type Car @model {
   vin: String
   lat: String
   lon: String
-  status: String
+  status: Boolean
   imageUrl: String
-  lastUserCheckedOut: User
+  lastUserCheckedOut: String
   client: Client @connection(name: "carClient")
 }
 
-type User @model {
+type SalesPerson @model {
   id: ID!
-  password: String!
   email: String!
   firstName: String
   lastName: String
@@ -28,7 +27,7 @@ type Client @model {
   lastName: String
   phone: String
   email: String
-  lastSalesPerson: User
+  lastSalesPerson: String
   license: String
   licenseImageUrl: String
   cars: [Car] @connection(name: "carClient")

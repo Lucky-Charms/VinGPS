@@ -20,7 +20,9 @@
         <activity android:name=".activities.VehicleDetailActivity" />
         <activity android:name=".activities.UpdateUserActivity" />
         <activity android:name=".activities.CreateClientActivity" />
-        <activity android:name=".activities.FeedActivity" />
+        <activity
+            android:name=".activities.FeedActivity"
+            android:theme="@style/Theme.VinGPS.NoActionBar" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

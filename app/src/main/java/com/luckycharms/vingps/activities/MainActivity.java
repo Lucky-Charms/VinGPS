@@ -10,16 +10,13 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.view.View;
-import android.widget.Button;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
-import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.User;
+import com.amplifyframework.datastore.generated.model.SalesPerson;
 import com.luckycharms.vingps.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         configureAws();
-//        mockUsers();
-//        verifyMockUsers();
         addLoginListener();
         getIsSignedIn();
     }
@@ -100,29 +95,5 @@ public class MainActivity extends AppCompatActivity {
                     error -> Log.e("Amplify.login", error.toString())
             );
         });
-    }
-
-    public void mockUsers() {
-        Amplify.Auth.signUp(
-                "m.acode@outlook.com",
-                "123456789",
-                AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.email(), "m.acode@outlook.com").build(),
-                result -> {
-                    Log.i("Amplify.signup", result.toString());
-                },
-                error -> Log.e("Amplify.signup", error.toString())
-        );
-    }
-
-    public void verifyMockUsers() {
-        Amplify.Auth.confirmSignUp(
-                "m.acode@outlook.com",
-                "505111",
-                result -> {
-                    Log.i("Amplify.confirm", result.toString());
-                },
-                error -> Log.e("Amplify.confirm", error.toString())
-        );
-
     }
 }

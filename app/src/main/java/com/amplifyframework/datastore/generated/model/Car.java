@@ -30,6 +30,7 @@ public final class Car implements Model {
   public static final QueryField LON = field("lon");
   public static final QueryField STATUS = field("status");
   public static final QueryField IMAGE_URL = field("imageUrl");
+  public static final QueryField LAST_USER_CHECKED_OUT = field("lastUserCheckedOut");
   public static final QueryField CLIENT = field("carClientId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String make;
@@ -39,8 +40,9 @@ public final class Car implements Model {
   private final @ModelField(targetType="String") String vin;
   private final @ModelField(targetType="String") String lat;
   private final @ModelField(targetType="String") String lon;
-  private final @ModelField(targetType="String") String status;
+  private final @ModelField(targetType="Boolean") Boolean status;
   private final @ModelField(targetType="String") String imageUrl;
+  private final @ModelField(targetType="String") String lastUserCheckedOut;
   private final @ModelField(targetType="Client") @BelongsTo(targetName = "carClientId", type = Client.class) Client client;
   public String getId() {
       return id;
@@ -74,7 +76,7 @@ public final class Car implements Model {
       return lon;
   }
   
-  public String getStatus() {
+  public Boolean getStatus() {
       return status;
   }
   
@@ -82,11 +84,15 @@ public final class Car implements Model {
       return imageUrl;
   }
   
+  public String getLastUserCheckedOut() {
+      return lastUserCheckedOut;
+  }
+  
   public Client getClient() {
       return client;
   }
   
-  private Car(String id, String make, String model, String color, String price, String vin, String lat, String lon, String status, String imageUrl, Client client) {
+  private Car(String id, String make, String model, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
     this.id = id;
     this.make = make;
     this.model = model;
@@ -97,6 +103,7 @@ public final class Car implements Model {
     this.lon = lon;
     this.status = status;
     this.imageUrl = imageUrl;
+    this.lastUserCheckedOut = lastUserCheckedOut;
     this.client = client;
   }
   
@@ -118,6 +125,7 @@ public final class Car implements Model {
               ObjectsCompat.equals(getLon(), car.getLon()) &&
               ObjectsCompat.equals(getStatus(), car.getStatus()) &&
               ObjectsCompat.equals(getImageUrl(), car.getImageUrl()) &&
+              ObjectsCompat.equals(getLastUserCheckedOut(), car.getLastUserCheckedOut()) &&
               ObjectsCompat.equals(getClient(), car.getClient());
       }
   }
@@ -135,6 +143,7 @@ public final class Car implements Model {
       .append(getLon())
       .append(getStatus())
       .append(getImageUrl())
+      .append(getLastUserCheckedOut())
       .append(getClient())
       .toString()
       .hashCode();
@@ -154,6 +163,7 @@ public final class Car implements Model {
       .append("lon=" + String.valueOf(getLon()) + ", ")
       .append("status=" + String.valueOf(getStatus()) + ", ")
       .append("imageUrl=" + String.valueOf(getImageUrl()) + ", ")
+      .append("lastUserCheckedOut=" + String.valueOf(getLastUserCheckedOut()) + ", ")
       .append("client=" + String.valueOf(getClient()))
       .append("}")
       .toString();
@@ -193,6 +203,7 @@ public final class Car implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -208,6 +219,7 @@ public final class Car implements Model {
       lon,
       status,
       imageUrl,
+      lastUserCheckedOut,
       client);
   }
   public interface BuildStep {
@@ -220,8 +232,9 @@ public final class Car implements Model {
     BuildStep vin(String vin);
     BuildStep lat(String lat);
     BuildStep lon(String lon);
-    BuildStep status(String status);
+    BuildStep status(Boolean status);
     BuildStep imageUrl(String imageUrl);
+    BuildStep lastUserCheckedOut(String lastUserCheckedOut);
     BuildStep client(Client client);
   }
   
@@ -235,8 +248,9 @@ public final class Car implements Model {
     private String vin;
     private String lat;
     private String lon;
-    private String status;
+    private Boolean status;
     private String imageUrl;
+    private String lastUserCheckedOut;
     private Client client;
     @Override
      public Car build() {
@@ -253,6 +267,7 @@ public final class Car implements Model {
           lon,
           status,
           imageUrl,
+          lastUserCheckedOut,
           client);
     }
     
@@ -299,7 +314,7 @@ public final class Car implements Model {
     }
     
     @Override
-     public BuildStep status(String status) {
+     public BuildStep status(Boolean status) {
         this.status = status;
         return this;
     }
@@ -307,6 +322,12 @@ public final class Car implements Model {
     @Override
      public BuildStep imageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+    
+    @Override
+     public BuildStep lastUserCheckedOut(String lastUserCheckedOut) {
+        this.lastUserCheckedOut = lastUserCheckedOut;
         return this;
     }
     
@@ -339,7 +360,7 @@ public final class Car implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String make, String model, String color, String price, String vin, String lat, String lon, String status, String imageUrl, Client client) {
+    private CopyOfBuilder(String id, String make, String model, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
       super.id(id);
       super.make(make)
         .model(model)
@@ -350,6 +371,7 @@ public final class Car implements Model {
         .lon(lon)
         .status(status)
         .imageUrl(imageUrl)
+        .lastUserCheckedOut(lastUserCheckedOut)
         .client(client);
     }
     
@@ -389,13 +411,18 @@ public final class Car implements Model {
     }
     
     @Override
-     public CopyOfBuilder status(String status) {
+     public CopyOfBuilder status(Boolean status) {
       return (CopyOfBuilder) super.status(status);
     }
     
     @Override
      public CopyOfBuilder imageUrl(String imageUrl) {
       return (CopyOfBuilder) super.imageUrl(imageUrl);
+    }
+    
+    @Override
+     public CopyOfBuilder lastUserCheckedOut(String lastUserCheckedOut) {
+      return (CopyOfBuilder) super.lastUserCheckedOut(lastUserCheckedOut);
     }
     
     @Override
