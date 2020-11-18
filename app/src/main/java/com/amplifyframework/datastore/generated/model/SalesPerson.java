@@ -15,28 +15,22 @@ import com.amplifyframework.core.model.query.predicate.QueryField;
 
 import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
-/** This is an auto generated class representing the User type in your schema. */
+/** This is an auto generated class representing the SalesPerson type in your schema. */
 @SuppressWarnings("all")
-@ModelConfig(pluralName = "Users")
-public final class User implements Model {
+@ModelConfig(pluralName = "SalesPeople")
+public final class SalesPerson implements Model {
   public static final QueryField ID = field("id");
-  public static final QueryField PASSWORD = field("password");
   public static final QueryField EMAIL = field("email");
   public static final QueryField FIRST_NAME = field("firstName");
   public static final QueryField LAST_NAME = field("lastName");
   public static final QueryField PHONE = field("phone");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String password;
   private final @ModelField(targetType="String", isRequired = true) String email;
   private final @ModelField(targetType="String") String firstName;
   private final @ModelField(targetType="String") String lastName;
   private final @ModelField(targetType="String") String phone;
   public String getId() {
       return id;
-  }
-  
-  public String getPassword() {
-      return password;
   }
   
   public String getEmail() {
@@ -55,9 +49,8 @@ public final class User implements Model {
       return phone;
   }
   
-  private User(String id, String password, String email, String firstName, String lastName, String phone) {
+  private SalesPerson(String id, String email, String firstName, String lastName, String phone) {
     this.id = id;
-    this.password = password;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -71,13 +64,12 @@ public final class User implements Model {
       } else if(obj == null || getClass() != obj.getClass()) {
         return false;
       } else {
-      User user = (User) obj;
-      return ObjectsCompat.equals(getId(), user.getId()) &&
-              ObjectsCompat.equals(getPassword(), user.getPassword()) &&
-              ObjectsCompat.equals(getEmail(), user.getEmail()) &&
-              ObjectsCompat.equals(getFirstName(), user.getFirstName()) &&
-              ObjectsCompat.equals(getLastName(), user.getLastName()) &&
-              ObjectsCompat.equals(getPhone(), user.getPhone());
+      SalesPerson salesPerson = (SalesPerson) obj;
+      return ObjectsCompat.equals(getId(), salesPerson.getId()) &&
+              ObjectsCompat.equals(getEmail(), salesPerson.getEmail()) &&
+              ObjectsCompat.equals(getFirstName(), salesPerson.getFirstName()) &&
+              ObjectsCompat.equals(getLastName(), salesPerson.getLastName()) &&
+              ObjectsCompat.equals(getPhone(), salesPerson.getPhone());
       }
   }
   
@@ -85,7 +77,6 @@ public final class User implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getPassword())
       .append(getEmail())
       .append(getFirstName())
       .append(getLastName())
@@ -97,9 +88,8 @@ public final class User implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("User {")
+      .append("SalesPerson {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("password=" + String.valueOf(getPassword()) + ", ")
       .append("email=" + String.valueOf(getEmail()) + ", ")
       .append("firstName=" + String.valueOf(getFirstName()) + ", ")
       .append("lastName=" + String.valueOf(getLastName()) + ", ")
@@ -108,7 +98,7 @@ public final class User implements Model {
       .toString();
   }
   
-  public static PasswordStep builder() {
+  public static EmailStep builder() {
       return new Builder();
   }
   
@@ -121,7 +111,7 @@ public final class User implements Model {
    * @return an instance of this model with only ID populated
    * @throws IllegalArgumentException Checks that ID is in the proper format
    */
-  public static User justId(String id) {
+  public static SalesPerson justId(String id) {
     try {
       UUID.fromString(id); // Check that ID is in the UUID format - if not an exception is thrown
     } catch (Exception exception) {
@@ -131,9 +121,8 @@ public final class User implements Model {
               "creating a new object, use the standard builder method and leave the ID field blank."
       );
     }
-    return new User(
+    return new SalesPerson(
       id,
-      null,
       null,
       null,
       null,
@@ -143,24 +132,18 @@ public final class User implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      password,
       email,
       firstName,
       lastName,
       phone);
   }
-  public interface PasswordStep {
-    EmailStep password(String password);
-  }
-  
-
   public interface EmailStep {
     BuildStep email(String email);
   }
   
 
   public interface BuildStep {
-    User build();
+    SalesPerson build();
     BuildStep id(String id) throws IllegalArgumentException;
     BuildStep firstName(String firstName);
     BuildStep lastName(String lastName);
@@ -168,31 +151,22 @@ public final class User implements Model {
   }
   
 
-  public static class Builder implements PasswordStep, EmailStep, BuildStep {
+  public static class Builder implements EmailStep, BuildStep {
     private String id;
-    private String password;
     private String email;
     private String firstName;
     private String lastName;
     private String phone;
     @Override
-     public User build() {
+     public SalesPerson build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
-        return new User(
+        return new SalesPerson(
           id,
-          password,
           email,
           firstName,
           lastName,
           phone);
-    }
-    
-    @Override
-     public EmailStep password(String password) {
-        Objects.requireNonNull(password);
-        this.password = password;
-        return this;
     }
     
     @Override
@@ -243,18 +217,12 @@ public final class User implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String password, String email, String firstName, String lastName, String phone) {
+    private CopyOfBuilder(String id, String email, String firstName, String lastName, String phone) {
       super.id(id);
-      super.password(password)
-        .email(email)
+      super.email(email)
         .firstName(firstName)
         .lastName(lastName)
         .phone(phone);
-    }
-    
-    @Override
-     public CopyOfBuilder password(String password) {
-      return (CopyOfBuilder) super.password(password);
     }
     
     @Override
