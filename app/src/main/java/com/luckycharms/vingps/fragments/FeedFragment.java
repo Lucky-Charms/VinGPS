@@ -2,6 +2,9 @@ package com.luckycharms.vingps.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +29,7 @@ import java.util.ArrayList;
 
 public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapter.CarFragmentOnClickListener{
     RecyclerView recyclerView;
+    Handler handler;
     ArrayList<Car> checkedOutCars = new ArrayList<>();
 
     @Nullable
@@ -33,9 +37,9 @@ public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapt
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed, container, false);
 
+        initializeRecyclerView(view, this);
+        getCarsFromAWS(view);
         addFindCarButtonListener(view);
-        getCarsFromAWS();
-        initializeRecyclerView(view);
         return view;
     }
 
@@ -45,13 +49,22 @@ public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapt
         });
     }
 
-    public void initializeRecyclerView(View view) {
+    public void initializeRecyclerView(View view, FeedFragment feedFragment) {
+        handler = new Handler(Looper.getMainLooper(),
+                new Handler.Callback() {
+                    @Override
+                    public boolean handleMessage(@NonNull Message message) {
+                        recyclerView.getAdapter().notifyDataSetChanged();
+                        return false;
+                    }
+                });
         recyclerView = view.findViewById(R.id.checkedOutRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new CarSearchRecyclerViewAdapter(checkedOutCars, this));
+        recyclerView.setAdapter(new CarSearchRecyclerViewAdapter(checkedOutCars, feedFragment));
     }
 
-    public void getCarsFromAWS() {
+    public void getCarsFromAWS(View view) {
+        checkedOutCars.clear();
         Amplify.API.query(
                 ModelQuery.list(Car.class),
                 response -> {
@@ -62,14 +75,11 @@ public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapt
                         }
                         counter++;
                     }
-                    Log.i("Amplify.CarSearch", Integer.toString(counter) + " Items Returned");
+                    handler.sendEmptyMessage(1);
+                    Log.i("Amplify.CheckedOutCars", Integer.toString(counter) + " Items Returned");
                 },
-                error -> Log.e("Amplify.CarSearch", error.toString())
+                error -> Log.e("Amplify.CheckedOutCars", error.toString())
         );
-
-        checkedOutCars.clear();
-
-
     }
 
     @Override

@@ -12,41 +12,52 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/carFragmentMake"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:id="@+id/checkedOutCarFragmentMake"
+        android:layout_width="208dp"
+        android:layout_height="49dp"
         android:gravity="center|center_horizontal"
         android:text="@string/hello_blank_fragment"
-        app:layout_constraintEnd_toStartOf="@+id/carFragmentDistance"
-        app:layout_constraintStart_toEndOf="@+id/carFragmentImage"
+        app:layout_constraintEnd_toStartOf="@+id/checkedOutCarFragmentDistance"
+        app:layout_constraintStart_toEndOf="@+id/checkedOutCarFragmentImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/carFragmentImage"
+        android:id="@+id/checkedOutCarFragmentImage"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:foregroundGravity="center"
         android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/carFragmentDistance"
+        android:id="@+id/checkedOutCarFragmentDistance"
         android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_height="45dp"
         android:gravity="center"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/carFragmentModel"
+        android:id="@+id/checkedOutCarFragmentStatus"
+        android:layout_width="90dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/checkedOutCarFragmentModel"
         android:layout_width="0dp"
         android:layout_height="45dp"
         android:gravity="center"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/carFragmentDistance"
-        app:layout_constraintEnd_toStartOf="@+id/carFragmentDistance"
-        app:layout_constraintStart_toEndOf="@+id/carFragmentImage"
-        app:layout_constraintTop_toBottomOf="@+id/carFragmentMake" />
+        app:layout_constraintEnd_toStartOf="@+id/checkedOutCarFragmentDistance"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/checkedOutCarFragmentImage"
+        app:layout_constraintTop_toBottomOf="@+id/checkedOutCarFragmentMake" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

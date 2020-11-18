@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         configureAws();
 
         // Hardcoding Dummy Data
-//        createDummyCars();
+        createDummyCars();
 
         // Adding Event Listeners
         addLoginListener();
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void createDummyCars() {
 //        int i = 1;
-        for (int i = 11; i <= 1000; i++) {
+        for (int i = 11; i <= 100; i++) {
             Client client = Client.builder()
                     .firstName("")
                     .lastName("")
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     .vin("VIN: " + Integer.toString(i))
                     .lat("Latitude: " + Integer.toString(i))
                     .lon("Longitude: " + Integer.toString(i))
+                    .status(true)
                     .client(client)
                     .build();
 
