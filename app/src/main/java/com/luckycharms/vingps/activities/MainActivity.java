@@ -15,16 +15,24 @@ import android.widget.Button;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Car;
+import com.amplifyframework.datastore.generated.model.Client;
 import com.amplifyframework.datastore.generated.model.User;
 import com.luckycharms.vingps.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     Handler handleCheckedLoggedIn;
+    public static  String clientId;
+    public static Client currentClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +52,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         configureAws();
+
 //        mockUsers();
 //        verifyMockUsers();
         addLoginListener();
         getIsSignedIn();
+        addMocks();
+        addClientMocks();
+        getClient(clientId);
+
+
     }
 
 //    @Override
@@ -104,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void mockUsers() {
         Amplify.Auth.signUp(
-                "m.acode@outlook.com",
+                "kamit.satkeev@gmail.com",
                 "123456789",
-                AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.email(), "m.acode@outlook.com").build(),
+                AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.email(), "kamit.satkeev@gmail.com").build(),
                 result -> {
                     Log.i("Amplify.signup", result.toString());
                 },
@@ -116,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void verifyMockUsers() {
         Amplify.Auth.confirmSignUp(
-                "m.acode@outlook.com",
-                "505111",
+                "kamit.satkeev@gmail.com",
+                "777000",
                 result -> {
                     Log.i("Amplify.confirm", result.toString());
                 },
@@ -125,4 +139,88 @@ public class MainActivity extends AppCompatActivity {
         );
 
     }
-}
+
+    public static void addMocks() {
+        Client client = Client.builder().firstName("Ted")
+                .lastName("Talks")
+                .phone("206-234-6231")
+                .email("thisplace@gmail.com")
+                .license("temp")
+                .licenseImageUrl("temp")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(Car.builder()
+                        .make("Ford")
+                        .model("Focus")
+                        .color("Red")
+                        .price("$14,000")
+                        .vin("AFGERGAEDFG235WEF23F21")
+                        .lat("43.126323")
+                        .lon("-122.456126")
+                        .status(false)
+                        .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
+                        .lastUserCheckedOut("Bill")
+                        .client(client)
+                        .build()),
+                success -> Log.i("Amplify", "Car added"),
+                error -> Log.e("Amplify", error.toString())
+        );
+    }
+
+    public static void addClientMocks() {
+
+        Client clnt = Client.builder()
+                .firstName("Ted")
+                .lastName("Talks")
+                .phone("206-234-6231")
+                .lastSalesPerson("Kamit")
+                .email("thisplace@gmail.com")
+                .license("temp")
+                .licenseImageUrl("temp")
+                .build();
+
+        Amplify.API.mutate(
+
+                ModelMutation.create(clnt),
+
+                success -> {
+                    Log.i("Amplify", success.getData().getId());
+                    clientId = success.getData().getId();
+
+                },
+                error -> Log.e("Amplify", error.toString())
+        );
+
+    }
+
+    public static void getClient(String id) {
+//        we need id from dynamo db or change the query to all
+        Amplify.API.query(
+                ModelQuery.get(Client.class, id),
+                response -> {
+//                    Log.i("MyAmplifyApp", ((Client) response.getData()).toString());
+                    Log.i("MyAmplifyApp",  response.toString());
+                    currentClient = response.getData();
+                    Car car = Car.builder()
+                            .make("Ford")
+                            .model("Focus")
+                            .color("Red")
+                            .price("$14,000")
+                            .vin("AFGERGAEDFG235WEF23F21")
+                            .lat("43.126323")
+                            .lon("-122.456126")
+                            .status(false)
+                            .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
+                            .lastUserCheckedOut("Bill")
+                            .build();
+//
+//                    currentClient.getCars().add(car);
+                },
+                error -> Log.e("MyAmplifyApp", error.toString(), error)
+        );
+    }
+
+          }
+
+
+

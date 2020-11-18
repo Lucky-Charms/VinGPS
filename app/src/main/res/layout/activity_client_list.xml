@@ -4,39 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ClientDetailActivity">
+    tools:context=".activities.ClientListActivity">
 
     <TextView
-        android:id="@+id/first_name"
+        android:id="@+id/first_name2"
         android:layout_width="135dp"
         android:layout_height="42dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="104dp"
         android:text="FirstName:"
+        app:layout_constraintBottom_toTopOf="@+id/last_name2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/client_search"
+        android:id="@+id/client_search2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginBottom="420dp"
         android:text="SearchClient"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/last_name" />
+        app:layout_constraintTop_toBottomOf="@+id/last_name2" />
 
     <TextView
-        android:id="@+id/last_name"
         android:layout_width="118dp"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
         android:text="Last name:"
+        app:layout_constraintBottom_toTopOf="@+id/client_search2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintHorizontal_bias="0.194"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/first_name" />
-
+        app:layout_constraintTop_toBottomOf="@+id/first_name2"
+        app:layout_constraintVertical_bias="0.444" />
 </androidx.constraintlayout.widget.ConstraintLayout>
