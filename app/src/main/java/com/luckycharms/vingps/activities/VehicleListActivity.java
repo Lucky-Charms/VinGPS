@@ -89,9 +89,12 @@ public class VehicleListActivity extends AppCompatActivity {
         Amplify.API.query(
                 request,
                 response -> {
+                    int counter = 0;
                     for (Car car : response.getData()) {
-                        Log.i("Amplify.CarSearch", car.toString());
+//                        Log.i("Amplify.CarSearch", car.toString());
+                        counter++;
                     }
+                    Log.i("Amplify.CarSearch", Integer.toString(counter) + " Items Returned");
                 },
                 error -> Log.e("Amplify.CarSearch", error.toString())
         );
