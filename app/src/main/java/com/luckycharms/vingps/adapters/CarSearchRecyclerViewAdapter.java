@@ -16,18 +16,18 @@ import java.util.ArrayList;
 
 public class CarSearchRecyclerViewAdapter extends RecyclerView.Adapter<CarSearchRecyclerViewAdapter.CarSearchViewHolder> {
 
-    public ArrayList<Car> cars;
+    public ArrayList<Car> checkedOutCars;
     public CarFragmentOnClickListener listener;
 
-    public CarSearchRecyclerViewAdapter(ArrayList<Car> cars, CarFragmentOnClickListener listener) {
-        this.cars = cars;
+    public CarSearchRecyclerViewAdapter(ArrayList<Car> checkedOutCars, CarFragmentOnClickListener listener) {
+        this.checkedOutCars = checkedOutCars;
         this.listener = listener;
     }
 
     @NonNull
     @Override
     public CarSearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_car_search, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_checked_out_cars, parent, false);
 
         CarSearchViewHolder viewHolder = new CarSearchViewHolder(view);
 
@@ -42,23 +42,26 @@ public class CarSearchRecyclerViewAdapter extends RecyclerView.Adapter<CarSearch
 
     @Override
     public void onBindViewHolder(@NonNull CarSearchViewHolder holder, int position) {
-        holder.car = cars.get(position);
+        holder.car = checkedOutCars.get(position);
 
-        ImageView image = holder.itemView.findViewById(R.id.carFragmentImage);
-        TextView make = holder.itemView.findViewById(R.id.carFragmentMake);
-        TextView model = holder.itemView.findViewById(R.id.carFragmentModel);
-        TextView distance = holder.itemView.findViewById(R.id.carFragmentDistance);
+        ImageView image = holder.itemView.findViewById(R.id.checkedOutCarFragmentImage);
+        TextView make = holder.itemView.findViewById(R.id.checkedOutCarFragmentMake);
+        TextView model = holder.itemView.findViewById(R.id.checkedOutCarFragmentModel);
+        TextView distance = holder.itemView.findViewById(R.id.checkedOutCarFragmentDistance);
+        TextView status = holder.itemView.findViewById(R.id.checkedOutCarFragmentStatus);
+        String carStatus = holder.car.getStatus() ? "Checked out" : "Available";
 
         image.setImageURI(null); // holder.car.getImageUrl()
         make.setText(holder.car.getMake().toString());
         model.setText(holder.car.getModel().toString());
+        status.setText(carStatus);
         // TODO: calculate distance
         distance.setText("100 meters");
     }
 
     @Override
     public int getItemCount() {
-        return cars.size();
+        return checkedOutCars.size();
     }
 
     public static class CarSearchViewHolder extends RecyclerView.ViewHolder {

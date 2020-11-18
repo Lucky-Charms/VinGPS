@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import com.amplifyframework.core.Amplify;
 import com.google.android.material.navigation.NavigationView;
 import com.luckycharms.vingps.R;
+import com.luckycharms.vingps.fragments.FeedFragment;
+import com.luckycharms.vingps.fragments.ProfileFragment;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;

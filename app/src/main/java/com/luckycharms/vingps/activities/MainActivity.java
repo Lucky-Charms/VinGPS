@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Amplify.login", "Handler: They are not logged in");
             } else if (message.arg1 == 1) {
                 Log.i("Amplify.login", "Handler: They were logged in");
-                startActivity(new Intent(MainActivity.this, FeedActivity.class));
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
             } else {
                 Log.i("Amplify.login", "Send true or false");
             }
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         configureAws();
 
         // Hardcoding Dummy Data
-//        createDummyCars();
+        createDummyCars();
 
         // Adding Event Listeners
         addLoginListener();
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     password,
                     result -> {
                         Log.i("Amplify.login", result.isSignInComplete() ? "Login succeeded" : "Login not complete");
-                        startActivity(new Intent(MainActivity.this, FeedActivity.class));
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
                     },
                     error -> Log.e("Amplify.login", error.toString())
             );
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void createDummyCars() {
 //        int i = 1;
-        for (int i = 11; i <= 1000; i++) {
+        for (int i = 11; i <= 100; i++) {
             Client client = Client.builder()
                     .firstName("")
                     .lastName("")
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     .vin("VIN: " + Integer.toString(i))
                     .lat("Latitude: " + Integer.toString(i))
                     .lon("Longitude: " + Integer.toString(i))
+                    .status(true)
                     .client(client)
                     .build();
 
