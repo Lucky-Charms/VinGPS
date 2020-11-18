@@ -15,10 +15,13 @@ import android.widget.Button;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Car;
+import com.amplifyframework.datastore.generated.model.Client;
 import com.amplifyframework.datastore.generated.model.User;
 import com.luckycharms.vingps.R;
 
@@ -44,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         configureAws();
-//        mockUsers();
-//        verifyMockUsers();
         addLoginListener();
         getIsSignedIn();
+        addMocks();
+
     }
 
 //    @Override
@@ -102,27 +105,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void mockUsers() {
-        Amplify.Auth.signUp(
-                "m.acode@outlook.com",
-                "123456789",
-                AuthSignUpOptions.builder().userAttribute(AuthUserAttributeKey.email(), "m.acode@outlook.com").build(),
-                result -> {
-                    Log.i("Amplify.signup", result.toString());
-                },
-                error -> Log.e("Amplify.signup", error.toString())
+    public void addMocks() {
+
+        Client client = Client.builder().firstName("Ted")
+                .lastName("Talks")
+                .phone("206-234-6231")
+                .email("thisplace@gmail.com")
+                .license("temp")
+                .licenseImageUrl("temp")
+                .build();
+        Amplify.API.mutate(
+                ModelMutation.create(Car.builder()
+                        .make("Ford")
+                        .model("Focus")
+                        .color("Red")
+                        .price("$14,000")
+                        .vin("AFGERGAEDFG235WEF23F21")
+                        .lat("43.126323")
+                        .lon("-122.456126")
+                        .status(false)
+                        .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
+                        .lastUserCheckedOut("Bill")
+                        .client(client)
+                        .build()),
+                success -> Log.i("Amplify", "Car added"),
+                error -> Log.e("Amplify", error.toString())
         );
     }
 
-    public void verifyMockUsers() {
-        Amplify.Auth.confirmSignUp(
-                "m.acode@outlook.com",
-                "505111",
-                result -> {
-                    Log.i("Amplify.confirm", result.toString());
-                },
-                error -> Log.e("Amplify.confirm", error.toString())
-        );
 
-    }
 }

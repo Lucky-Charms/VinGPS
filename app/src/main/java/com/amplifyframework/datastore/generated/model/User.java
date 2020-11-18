@@ -20,23 +20,17 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "Users")
 public final class User implements Model {
   public static final QueryField ID = field("id");
-  public static final QueryField PASSWORD = field("password");
   public static final QueryField EMAIL = field("email");
   public static final QueryField FIRST_NAME = field("firstName");
   public static final QueryField LAST_NAME = field("lastName");
   public static final QueryField PHONE = field("phone");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String password;
   private final @ModelField(targetType="String", isRequired = true) String email;
   private final @ModelField(targetType="String") String firstName;
   private final @ModelField(targetType="String") String lastName;
   private final @ModelField(targetType="String") String phone;
   public String getId() {
       return id;
-  }
-  
-  public String getPassword() {
-      return password;
   }
   
   public String getEmail() {
@@ -55,9 +49,8 @@ public final class User implements Model {
       return phone;
   }
   
-  private User(String id, String password, String email, String firstName, String lastName, String phone) {
+  private User(String id, String email, String firstName, String lastName, String phone) {
     this.id = id;
-    this.password = password;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -73,7 +66,6 @@ public final class User implements Model {
       } else {
       User user = (User) obj;
       return ObjectsCompat.equals(getId(), user.getId()) &&
-              ObjectsCompat.equals(getPassword(), user.getPassword()) &&
               ObjectsCompat.equals(getEmail(), user.getEmail()) &&
               ObjectsCompat.equals(getFirstName(), user.getFirstName()) &&
               ObjectsCompat.equals(getLastName(), user.getLastName()) &&
@@ -85,7 +77,6 @@ public final class User implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getPassword())
       .append(getEmail())
       .append(getFirstName())
       .append(getLastName())
@@ -99,7 +90,6 @@ public final class User implements Model {
     return new StringBuilder()
       .append("User {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("password=" + String.valueOf(getPassword()) + ", ")
       .append("email=" + String.valueOf(getEmail()) + ", ")
       .append("firstName=" + String.valueOf(getFirstName()) + ", ")
       .append("lastName=" + String.valueOf(getLastName()) + ", ")
@@ -108,7 +98,7 @@ public final class User implements Model {
       .toString();
   }
   
-  public static PasswordStep builder() {
+  public static EmailStep builder() {
       return new Builder();
   }
   
@@ -136,24 +126,17 @@ public final class User implements Model {
       null,
       null,
       null,
-      null,
       null
     );
   }
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      password,
       email,
       firstName,
       lastName,
       phone);
   }
-  public interface PasswordStep {
-    EmailStep password(String password);
-  }
-  
-
   public interface EmailStep {
     BuildStep email(String email);
   }
@@ -168,9 +151,8 @@ public final class User implements Model {
   }
   
 
-  public static class Builder implements PasswordStep, EmailStep, BuildStep {
+  public static class Builder implements EmailStep, BuildStep {
     private String id;
-    private String password;
     private String email;
     private String firstName;
     private String lastName;
@@ -181,18 +163,10 @@ public final class User implements Model {
         
         return new User(
           id,
-          password,
           email,
           firstName,
           lastName,
           phone);
-    }
-    
-    @Override
-     public EmailStep password(String password) {
-        Objects.requireNonNull(password);
-        this.password = password;
-        return this;
     }
     
     @Override
@@ -243,18 +217,12 @@ public final class User implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String password, String email, String firstName, String lastName, String phone) {
+    private CopyOfBuilder(String id, String email, String firstName, String lastName, String phone) {
       super.id(id);
-      super.password(password)
-        .email(email)
+      super.email(email)
         .firstName(firstName)
         .lastName(lastName)
         .phone(phone);
-    }
-    
-    @Override
-     public CopyOfBuilder password(String password) {
-      return (CopyOfBuilder) super.password(password);
     }
     
     @Override

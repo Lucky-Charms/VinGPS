@@ -25,5 +25,12 @@ public class FeedActivity extends AppCompatActivity {
             );
             startActivity(new Intent(FeedActivity.this, MainActivity.class));
         }));
+
+
+        Button gothere = findViewById(R.id.button3);
+        gothere.setOnClickListener((view) -> {
+            Intent intent = new Intent(FeedActivity.this, VicLocationActivity.class);
+            FeedActivity.this.startActivity(intent);
+        });
     }
 }
