@@ -6,4 +6,74 @@
     android:layout_height="match_parent"
     tools:context=".activities.VehicleDetailActivity">
 
+    <Button
+        android:id="@+id/locateCarButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="132dp"
+        android:text="Locate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/carDetailImage"
+        android:layout_width="174dp"
+        android:layout_height="192dp"
+        android:layout_marginStart="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/locateCarButton"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_car" />
+
+    <TextView
+        android:id="@+id/carDetailStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        tools:layout_editor_absoluteX="69dp"
+        tools:layout_editor_absoluteY="53dp" />
+
+    <TextView
+        android:id="@+id/carDetailPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="60dp" />
+
+    <TextView
+        android:id="@+id/carDetailColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="42dp" />
+
+    <TextView
+        android:id="@+id/carDetailModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Model"
+        tools:layout_editor_absoluteX="245dp"
+        tools:layout_editor_absoluteY="37dp" />
+
+    <TextView
+        android:id="@+id/carDetailMake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="53dp"
+        tools:layout_editor_absoluteY="13dp" />
+
+    <TextView
+        android:id="@+id/carDetailVIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIN Number"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="67dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

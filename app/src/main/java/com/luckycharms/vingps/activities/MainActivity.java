@@ -13,10 +13,8 @@ import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.SalesPerson;
 import com.luckycharms.vingps.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.i("Amplify.login", "Handler: They are not logged in");
             } else if (message.arg1 == 1) {
                 Log.i("Amplify.login", "Handler: They were logged in");
-                startActivity(new Intent(MainActivity.this, FeedActivity.class));
+                startActivity(new Intent(MainActivity.this, HomeActivity.class));
             } else {
                 Log.i("Amplify.login", "Send true or false");
             }
@@ -90,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     password,
                     result -> {
                         Log.i("Amplify.login", result.isSignInComplete() ? "Login succeeded" : "Login not complete");
-                        startActivity(new Intent(MainActivity.this, FeedActivity.class));
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
                     },
                     error -> Log.e("Amplify.login", error.toString())
             );

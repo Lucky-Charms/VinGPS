@@ -21,7 +21,7 @@
         <activity android:name=".activities.UpdateUserActivity" />
         <activity android:name=".activities.CreateClientActivity" />
         <activity
-            android:name=".activities.FeedActivity"
+            android:name=".activities.HomeActivity"
             android:theme="@style/Theme.VinGPS.NoActionBar" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
