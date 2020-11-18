@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".fragments.CarSearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/carFragmentMake"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:text="@string/hello_blank_fragment"
+        app:layout_constraintEnd_toStartOf="@+id/carFragmentDistance"
+        app:layout_constraintStart_toEndOf="@+id/carFragmentImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/carFragmentImage"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/carFragmentDistance"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/carFragmentModel"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/carFragmentDistance"
+        app:layout_constraintEnd_toStartOf="@+id/carFragmentDistance"
+        app:layout_constraintStart_toEndOf="@+id/carFragmentImage"
+        app:layout_constraintTop_toBottomOf="@+id/carFragmentMake" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

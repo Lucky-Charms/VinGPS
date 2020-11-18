@@ -3,6 +3,8 @@ package com.luckycharms.vingps.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,11 @@ public class CarSearchRecyclerViewAdapter extends RecyclerView.Adapter<CarSearch
 
     public ArrayList<Car> cars;
     public CarFragmentOnClickListener listener;
+
+    public CarSearchRecyclerViewAdapter(ArrayList<Car> cars, CarFragmentOnClickListener listener) {
+        this.cars = cars;
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -36,6 +43,17 @@ public class CarSearchRecyclerViewAdapter extends RecyclerView.Adapter<CarSearch
     @Override
     public void onBindViewHolder(@NonNull CarSearchViewHolder holder, int position) {
         holder.car = cars.get(position);
+
+        ImageView image = holder.itemView.findViewById(R.id.carFragmentImage);
+        TextView make = holder.itemView.findViewById(R.id.carFragmentMake);
+        TextView model = holder.itemView.findViewById(R.id.carFragmentModel);
+        TextView distance = holder.itemView.findViewById(R.id.carFragmentDistance);
+
+        image.setImageURI(null); // holder.car.getImageUrl()
+        make.setText(holder.car.getMake().toString());
+        model.setText(holder.car.getModel().toString());
+        // TODO: calculate distance
+        distance.setText("100 meters");
     }
 
     @Override

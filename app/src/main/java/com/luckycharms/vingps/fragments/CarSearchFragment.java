@@ -19,12 +19,16 @@ public class CarSearchFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM1 = "imageURL";
+    private static final String ARG_PARAM2 = "make";
+    private static final String ARG_PARAM3 = "model";
+    private static final String ARG_PARAM4 = "distance";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mImageURL;
+    private String mMake;
+    private String mModel;
+    private String mDistance;
 
     public CarSearchFragment() {
         // Required empty public constructor
@@ -39,11 +43,13 @@ public class CarSearchFragment extends Fragment {
      * @return A new instance of fragment CarSearchFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static CarSearchFragment newInstance(String param1, String param2) {
+    public static CarSearchFragment newInstance(String param1, String param2, String param3, String param4) {
         CarSearchFragment fragment = new CarSearchFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param2);
+        args.putString(ARG_PARAM4, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,8 +58,10 @@ public class CarSearchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mImageURL = getArguments().getString(ARG_PARAM1);
+            mMake = getArguments().getString(ARG_PARAM2);
+            mModel = getArguments().getString(ARG_PARAM3);
+            mDistance = getArguments().getString(ARG_PARAM4);
         }
     }
 
