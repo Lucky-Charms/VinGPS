@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.VinGPS">
+        <activity android:name=".activities.ClientListActivity"></activity>
         <activity android:name=".activities.ClientDetailActivity" />
         <activity android:name=".activities.VehicleListActivity" />
         <activity android:name=".activities.VehicleDetailActivity" />
