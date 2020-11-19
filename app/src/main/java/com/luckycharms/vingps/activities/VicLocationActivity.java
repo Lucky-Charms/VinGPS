@@ -18,6 +18,7 @@ package com.luckycharms.vingps.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -33,9 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.luckycharms.vingps.R;
 
 public class VicLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
-    String idf = "db073e06-f4cf-474d-aca9-19a8c0ffd9fc";
-    double lat;
-    double lon;
+
     private GoogleMap mMap;
 
     @Override
@@ -46,13 +45,13 @@ public class VicLocationActivity extends AppCompatActivity implements OnMapReady
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        findCar(idf);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        findCar(idf);
 
+        double lat;
+        double lon;
 
         mMap = googleMap;
         mMap.setMinZoomPreference(18.0f);
@@ -60,27 +59,16 @@ public class VicLocationActivity extends AppCompatActivity implements OnMapReady
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         // Add a marker in Seattle and move the camera
 
+        Intent intent = getIntent();
+        lat = Double.parseDouble(intent.getExtras().getString("lat"));
+        lon = Double.parseDouble(intent.getExtras().getString("lon"));
+        Log.i("Latitude", intent.getExtras().getString("lat"));
+        Log.i("Longitude", intent.getExtras().getString("lon"));
         LatLng location = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title("Location of Car"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-    }
-
-    public void findCar(String idf){
-
-        Amplify.API.query(
-                ModelQuery.get(Car.class, idf),
-                success -> {
-                    Log.i("Amplify", success.getData().toString());
-                    Log.i("Amplify", "Vin recieved");
-                    lat = Double.parseDouble(success.getData().getLat().toString());
-                    lon = Double.parseDouble(success.getData().getLon().toString());
-
-
-                },
-                error -> Log.i("Amplify", "Vin not received")
-        );
     }
 
 //    public class Tracking extends MapActivity implements LocationListener {

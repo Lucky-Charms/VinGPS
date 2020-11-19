@@ -25,6 +25,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
         TextView carVin = VehicleDetailActivity.this.findViewById(R.id.carDetailVIN);
         TextView carStatus = VehicleDetailActivity.this.findViewById(R.id.carDetailStatus);
 
+
 //        carMake.setText(intent.getExtras().toString("make"));
 //        carModel.setText(intent.getExtras().toString("model"));
 //        carColor.setText(intent.getExtras().toString("color"));
@@ -36,6 +37,18 @@ public class VehicleDetailActivity extends AppCompatActivity {
         checkCarLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String lat;
+                String lon;
+
+                Intent intent = getIntent();
+                lat = intent.getExtras().getString("lat");
+                lon = intent.getExtras().getString("lon");
+
+                Intent goToLocation = new Intent(VehicleDetailActivity.this, VicLocationActivity.class);
+                goToLocation.putExtra("lat", lat);
+                goToLocation.putExtra("lon", lon);
+                VehicleDetailActivity.this.startActivity(goToLocation);
+
                 System.out.println("Checking location");
             }
         });
