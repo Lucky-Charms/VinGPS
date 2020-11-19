@@ -52,8 +52,8 @@ public class CarSearchRecyclerViewAdapter extends RecyclerView.Adapter<CarSearch
         String carStatus = holder.car.getStatus() ? "Checked out" : "Available";
 
         image.setImageURI(null); // holder.car.getImageUrl()
-        make.setText(holder.car.getMake().toString());
-        model.setText(holder.car.getModel().toString());
+        make.setText(holder.car.getMake());
+        model.setText(holder.car.getModel());
         status.setText(carStatus);
         // TODO: calculate distance
         distance.setText("100 meters");
