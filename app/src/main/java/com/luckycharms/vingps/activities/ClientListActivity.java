@@ -62,13 +62,31 @@ public class ClientListActivity extends AppCompatActivity implements ClientSearc
         TextView firstName = findViewById(R.id.clientListFirstName);
         TextView lastName = findViewById(R.id.clientListLastName);
 
+        String firstNameString = firstName.getText().toString();
+        String lastNameString = lastName.getText().toString();
+
+        // Format the search query by capitalizing the first letter in the string
+        if (firstNameString.length() == 1)
+            firstNameString = firstNameString.toUpperCase();
+        else if (firstNameString.length() > 1)
+            firstNameString = firstNameString.substring(0, 1).toUpperCase() + firstNameString.substring(1);
+
+        if (lastNameString.length() == 1)
+            lastNameString = lastNameString.toUpperCase();
+        else if (lastNameString.length() > 1)
+            lastNameString = lastNameString.substring(0, 1).toUpperCase() + lastNameString.substring(1);
+
         clients.clear();
+
+        String queryFirstName = firstNameString;
+        String queryLastName = lastNameString;
+        Log.i("Amplify.ClientSearch", queryFirstName + " " + queryLastName);
 
         Amplify.API.query(
                 ModelQuery.list(Client.class),
                 response -> {
                     for(Client client : response.getData()){
-                        if (client.getFirstName().contains(firstName.getText().toString()) || client.getLastName().contains(lastName.getText().toString()))
+                        if (client.getFirstName().contains(queryFirstName) || client.getLastName().contains(queryLastName))
                             clients.add(client);
                     }
                     Log.i("Amplify.ClientSearch", Integer.toString(clients.size()) + " Items Returned");
@@ -96,7 +114,7 @@ public class ClientListActivity extends AppCompatActivity implements ClientSearc
         intent.putExtra("license", client.getLicense());
         intent.putExtra("licenseImageURL", client.getLicenseImageUrl());
         intent.putExtra("lastSalesPerson", client.getLastSalesPerson());
-        Log.i("Amplify.SearchClient", "You are trying to view client: " + client.getFirstName().toString());
+        Log.i("Amplify.SearchClient", "You are trying to view client: " + client.getFirstName());
 //        startActivity(intent);
     }
 }

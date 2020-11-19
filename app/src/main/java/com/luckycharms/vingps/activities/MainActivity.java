@@ -21,7 +21,9 @@ import android.widget.TextView;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Car;
 import com.amplifyframework.datastore.generated.model.Client;
@@ -53,14 +55,16 @@ public class MainActivity extends AppCompatActivity {
         configureAws();
 
         // Hardcoding Dummy Data
+        addMocks();
 //        createDummyCars();
-
 //        createDummyClients();
 
 
         // Adding Event Listeners
         addLoginListener();
+      
 //        addMocks();
+
         getIsSignedIn();
 
 
@@ -133,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
+                        .year("1969")
                         .make("Ford")
                         .model("Escort")
                         .year("2018")
@@ -159,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
+                        .year("2000")
                         .make("Toyota")
                         .model("Tacoma")
                         .year("2018")
@@ -185,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
+                        .year("2020")
                         .make("Mercedes-Benz")
                         .model("C100")
                         .color("Silver")
@@ -210,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
+                        .year("2050")
                         .make("Tesla")
                         .model("Model S")
                         .color("Black")
@@ -235,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
+                        .year("2018")
                         .make("Tesla")
                         .model("Model X")
                         .color("White")
@@ -260,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
+                        .year("1993")
                         .make("Mazda")
                         .model("Miata")
                         .color("Red")

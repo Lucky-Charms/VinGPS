@@ -94,6 +94,7 @@ public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapt
     public void CarFragmentListener(Car car) {
         Intent intent = new Intent(getActivity(), VehicleDetailActivity.class);
         intent.putExtra("id", car.getId());
+        intent.putExtra("year", car.getYear());
         intent.putExtra("make", car.getMake());
         intent.putExtra("model", car.getModel());
         intent.putExtra("color", car.getColor());
@@ -105,6 +106,6 @@ public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapt
         intent.putExtra("imageURL", car.getImageUrl());
         intent.putExtra("lastUserCheckedOut", car.getLastUserCheckedOut());
         Log.i("Amplify.CarSearch", "You want to view car model " + car.getModel());
-//        startActivity(intent);
+        startActivity(intent);
     }
 }

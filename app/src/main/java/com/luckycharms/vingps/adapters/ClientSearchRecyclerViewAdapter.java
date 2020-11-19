@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amplifyframework.datastore.generated.model.Car;
 import com.amplifyframework.datastore.generated.model.Client;
 import com.luckycharms.vingps.R;
 

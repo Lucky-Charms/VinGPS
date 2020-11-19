@@ -84,6 +84,12 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
         String searchedProperty = searchSpinner.getSelectedItem().toString();
 
         GraphQLRequest<PaginatedResult<Car>> request;
+        
+        // Format the search query by capitalizing the first letter in the string
+        if (inputQuery.length() == 1)
+            inputQuery.toUpperCase();
+        else if (inputQuery.length() > 1)
+            inputQuery = inputQuery.substring(0, 1).toUpperCase() + inputQuery.substring(1);
 
         switch (searchedProperty) {
             case "Make":
@@ -133,6 +139,7 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
     public void CarFragmentListener(Car car) {
         Intent intent = new Intent(VehicleListActivity.this, VehicleDetailActivity.class);
         intent.putExtra("id", car.getId());
+        intent.putExtra("year", car.getYear());
         intent.putExtra("make", car.getMake());
         intent.putExtra("model", car.getModel());
         intent.putExtra("color", car.getColor());
@@ -143,8 +150,9 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
         intent.putExtra("status", car.getStatus());
         intent.putExtra("imageURL", car.getImageUrl());
         intent.putExtra("lastUserCheckedOut", car.getLastUserCheckedOut());
-        Log.i("Amplify.CarSearch", "You want to view car model " + car.getModel());
-        startActivity(intent);
+//        intent.putExtra("client", car.client.);
+
+        this.startActivity(intent);
     }
 
     public void initializeRecyclerView() {
