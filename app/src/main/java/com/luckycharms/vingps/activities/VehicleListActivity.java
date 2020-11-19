@@ -144,7 +144,7 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
         intent.putExtra("imageURL", car.getImageUrl());
         intent.putExtra("lastUserCheckedOut", car.getLastUserCheckedOut());
         Log.i("Amplify.CarSearch", "You want to view car model " + car.getModel());
-//        startActivity(intent);
+        startActivity(intent);
     }
 
     public void initializeRecyclerView() {

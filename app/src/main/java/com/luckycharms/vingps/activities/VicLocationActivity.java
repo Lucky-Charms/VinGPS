@@ -18,8 +18,13 @@ package com.luckycharms.vingps.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Car;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,7 +34,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.luckycharms.vingps.R;
 
 public class VicLocationActivity extends AppCompatActivity implements OnMapReadyCallback {
-
 
     private GoogleMap mMap;
 
@@ -43,62 +47,28 @@ public class VicLocationActivity extends AppCompatActivity implements OnMapReady
         mapFragment.getMapAsync(this);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * <p>
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        MockCar car1 = new MockCar("Ford", "Siesta", "2015", 45.12489, -122.34566);
+        double lat;
+        double lon;
+
         mMap = googleMap;
         mMap.setMinZoomPreference(18.0f);
         mMap.setMaxZoomPreference(20.0f);
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         // Add a marker in Seattle and move the camera
-        LatLng seattle = new LatLng(car1.lat, car1.lon);
+
+        Intent intent = getIntent();
+        lat = Double.parseDouble(intent.getExtras().getString("lat"));
+        lon = Double.parseDouble(intent.getExtras().getString("lon"));
+        Log.i("Latitude", intent.getExtras().getString("lat"));
+        Log.i("Longitude", intent.getExtras().getString("lon"));
+        LatLng location = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions()
-                .position(seattle)
-                .title("Marker in Seattle"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(seattle));
-    }
-
-// car location in dealership
-    public void onCarMapReady(GoogleMap googleMap) {
-        MockCar car1 = new MockCar("Ford", "Siesta", "2015", 45.12489, -122.34566);
-
-        mMap = googleMap;
-        mMap.setMinZoomPreference(18.0f);
-        mMap.setMaxZoomPreference(20.0f);
-        mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-        // Add a marker for car
-        LatLng car = new LatLng(car1.lat, car1.lon);
-        mMap.addMarker(new MarkerOptions()
-                .position(car)
-                .title("Marker in dealership"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(car));
-    }
-
-    public class MockCar{
-        String make;
-        String model;
-        String year;
-        double lat;
-        double lon;
-
-        public MockCar(String make, String model, String year, double lat, double lon) {
-            this.make = make;
-            this.model = model;
-            this.year = year;
-            this.lat = lat;
-            this.lon = lon;
-        }
+                .position(location)
+                .title("Location of Car"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 
 //    public class Tracking extends MapActivity implements LocationListener {

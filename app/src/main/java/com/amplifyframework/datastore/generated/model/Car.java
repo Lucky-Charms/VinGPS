@@ -23,6 +23,7 @@ public final class Car implements Model {
   public static final QueryField ID = field("id");
   public static final QueryField MAKE = field("make");
   public static final QueryField MODEL = field("model");
+  public static final QueryField YEAR = field("year");
   public static final QueryField COLOR = field("color");
   public static final QueryField PRICE = field("price");
   public static final QueryField VIN = field("vin");
@@ -35,6 +36,7 @@ public final class Car implements Model {
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String make;
   private final @ModelField(targetType="String") String model;
+  private final @ModelField(targetType="String") String year;
   private final @ModelField(targetType="String") String color;
   private final @ModelField(targetType="String") String price;
   private final @ModelField(targetType="String") String vin;
@@ -54,6 +56,10 @@ public final class Car implements Model {
   
   public String getModel() {
       return model;
+  }
+  
+  public String getYear() {
+      return year;
   }
   
   public String getColor() {
@@ -92,10 +98,11 @@ public final class Car implements Model {
       return client;
   }
   
-  private Car(String id, String make, String model, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
+  private Car(String id, String make, String model, String year, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
     this.id = id;
     this.make = make;
     this.model = model;
+    this.year = year;
     this.color = color;
     this.price = price;
     this.vin = vin;
@@ -118,6 +125,7 @@ public final class Car implements Model {
       return ObjectsCompat.equals(getId(), car.getId()) &&
               ObjectsCompat.equals(getMake(), car.getMake()) &&
               ObjectsCompat.equals(getModel(), car.getModel()) &&
+              ObjectsCompat.equals(getYear(), car.getYear()) &&
               ObjectsCompat.equals(getColor(), car.getColor()) &&
               ObjectsCompat.equals(getPrice(), car.getPrice()) &&
               ObjectsCompat.equals(getVin(), car.getVin()) &&
@@ -136,6 +144,7 @@ public final class Car implements Model {
       .append(getId())
       .append(getMake())
       .append(getModel())
+      .append(getYear())
       .append(getColor())
       .append(getPrice())
       .append(getVin())
@@ -156,6 +165,7 @@ public final class Car implements Model {
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("make=" + String.valueOf(getMake()) + ", ")
       .append("model=" + String.valueOf(getModel()) + ", ")
+      .append("year=" + String.valueOf(getYear()) + ", ")
       .append("color=" + String.valueOf(getColor()) + ", ")
       .append("price=" + String.valueOf(getPrice()) + ", ")
       .append("vin=" + String.valueOf(getVin()) + ", ")
@@ -204,6 +214,7 @@ public final class Car implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -212,6 +223,7 @@ public final class Car implements Model {
     return new CopyOfBuilder(id,
       make,
       model,
+      year,
       color,
       price,
       vin,
@@ -227,6 +239,7 @@ public final class Car implements Model {
     BuildStep id(String id) throws IllegalArgumentException;
     BuildStep make(String make);
     BuildStep model(String model);
+    BuildStep year(String year);
     BuildStep color(String color);
     BuildStep price(String price);
     BuildStep vin(String vin);
@@ -243,6 +256,7 @@ public final class Car implements Model {
     private String id;
     private String make;
     private String model;
+    private String year;
     private String color;
     private String price;
     private String vin;
@@ -260,6 +274,7 @@ public final class Car implements Model {
           id,
           make,
           model,
+          year,
           color,
           price,
           vin,
@@ -280,6 +295,12 @@ public final class Car implements Model {
     @Override
      public BuildStep model(String model) {
         this.model = model;
+        return this;
+    }
+    
+    @Override
+     public BuildStep year(String year) {
+        this.year = year;
         return this;
     }
     
@@ -360,10 +381,11 @@ public final class Car implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String make, String model, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
+    private CopyOfBuilder(String id, String make, String model, String year, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
       super.id(id);
       super.make(make)
         .model(model)
+        .year(year)
         .color(color)
         .price(price)
         .vin(vin)
@@ -383,6 +405,11 @@ public final class Car implements Model {
     @Override
      public CopyOfBuilder model(String model) {
       return (CopyOfBuilder) super.model(model);
+    }
+    
+    @Override
+     public CopyOfBuilder year(String year) {
+      return (CopyOfBuilder) super.year(year);
     }
     
     @Override
