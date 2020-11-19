@@ -47,14 +47,16 @@ public class MainActivity extends AppCompatActivity {
         configureAws();
 
         // Hardcoding Dummy Data
+        addMocks();
 //        createDummyCars();
-
 //        createDummyClients();
 
 
         // Adding Event Listeners
         addLoginListener();
+      
 //        addMocks();
+
         getIsSignedIn();
     }
 

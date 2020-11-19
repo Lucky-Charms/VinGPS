@@ -84,6 +84,12 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
         String searchedProperty = searchSpinner.getSelectedItem().toString();
 
         GraphQLRequest<PaginatedResult<Car>> request;
+        
+        // Format the search query by capitalizing the first letter in the string
+        if (inputQuery.length() == 1)
+            inputQuery.toUpperCase();
+        else if (inputQuery.length() > 1)
+            inputQuery = inputQuery.substring(0, 1).toUpperCase() + inputQuery.substring(1);
 
         switch (searchedProperty) {
             case "Make":

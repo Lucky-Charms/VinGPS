@@ -1,0 +1,259 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateCar(
+  $input: CreateCarInput!
+  $condition: ModelCarConditionInput
+) {
+  createCar(input: $input, condition: $condition) {
+    id
+    make
+    model
+    year
+    color
+    price
+    vin
+    lat
+    lon
+    status
+    imageUrl
+    lastUserCheckedOut
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCar(
+  $input: UpdateCarInput!
+  $condition: ModelCarConditionInput
+) {
+  updateCar(input: $input, condition: $condition) {
+    id
+    make
+    model
+    year
+    color
+    price
+    vin
+    lat
+    lon
+    status
+    imageUrl
+    lastUserCheckedOut
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCar(
+  $input: DeleteCarInput!
+  $condition: ModelCarConditionInput
+) {
+  deleteCar(input: $input, condition: $condition) {
+    id
+    make
+    model
+    year
+    color
+    price
+    vin
+    lat
+    lon
+    status
+    imageUrl
+    lastUserCheckedOut
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateSalesPerson(
+  $input: CreateSalesPersonInput!
+  $condition: ModelSalesPersonConditionInput
+) {
+  createSalesPerson(input: $input, condition: $condition) {
+    id
+    email
+    firstName
+    lastName
+    phone
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateSalesPerson(
+  $input: UpdateSalesPersonInput!
+  $condition: ModelSalesPersonConditionInput
+) {
+  updateSalesPerson(input: $input, condition: $condition) {
+    id
+    email
+    firstName
+    lastName
+    phone
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteSalesPerson(
+  $input: DeleteSalesPersonInput!
+  $condition: ModelSalesPersonConditionInput
+) {
+  deleteSalesPerson(input: $input, condition: $condition) {
+    id
+    email
+    firstName
+    lastName
+    phone
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateClient(
+  $input: CreateClientInput!
+  $condition: ModelClientConditionInput
+) {
+  createClient(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    phone
+    email
+    lastSalesPerson
+    license
+    licenseImageUrl
+    cars {
+      items {
+        id
+        make
+        model
+        year
+        color
+        price
+        vin
+        lat
+        lon
+        status
+        imageUrl
+        lastUserCheckedOut
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateClient(
+  $input: UpdateClientInput!
+  $condition: ModelClientConditionInput
+) {
+  updateClient(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    phone
+    email
+    lastSalesPerson
+    license
+    licenseImageUrl
+    cars {
+      items {
+        id
+        make
+        model
+        year
+        color
+        price
+        vin
+        lat
+        lon
+        status
+        imageUrl
+        lastUserCheckedOut
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteClient(
+  $input: DeleteClientInput!
+  $condition: ModelClientConditionInput
+) {
+  deleteClient(input: $input, condition: $condition) {
+    id
+    firstName
+    lastName
+    phone
+    email
+    lastSalesPerson
+    license
+    licenseImageUrl
+    cars {
+      items {
+        id
+        make
+        model
+        year
+        color
+        price
+        vin
+        lat
+        lon
+        status
+        imageUrl
+        lastUserCheckedOut
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}

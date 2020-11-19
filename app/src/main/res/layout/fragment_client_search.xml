@@ -16,7 +16,6 @@
         android:layout_height="60dp"
         android:ems="10"
         android:gravity="center"
-        android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/clientFragmentLastName"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +27,9 @@
         android:layout_height="60dp"
         android:ems="10"
         android:gravity="center"
-        android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/clientFragmentFirstName" />
+        app:layout_constraintStart_toEndOf="@+id/clientFragmentFirstName"
+        app:layout_constraintTop_toTopOf="@+id/clientFragmentFirstName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
