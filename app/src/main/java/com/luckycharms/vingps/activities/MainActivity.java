@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         // Hardcoding Dummy Data
 //        createDummyCars();
 
+//        createDummyClients();
+
+
         // Adding Event Listeners
         addLoginListener();
         addMocks();
@@ -104,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
             );
         });
     }
+
 
     public void addMocks() {
         Client client = Client.builder().firstName("Ted")
@@ -257,9 +261,9 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+
     public void createDummyCars() {
-//        int i = 1;
-        for (int i = 11; i <= 100; i++) {
+        for (int i = 1; i <= 1000; i++) {
             Client client = Client.builder()
                     .firstName("")
                     .lastName("")
@@ -284,8 +288,28 @@ public class MainActivity extends AppCompatActivity {
             int num = i;
             Amplify.API.mutate(
                     ModelMutation.create(car),
-                    response -> Log.i("Amplify.Dummy", Integer.toString(num)),
-                    error -> Log.e("Amplify.Dummy", Integer.toString(num))
+                    response -> Log.i("Amplify.DummyCar", Integer.toString(num)),
+                    error -> Log.e("Amplify.DummyCar", Integer.toString(num))
+            );
+        }
+    }
+
+    public void createDummyClients() {
+        for (int i = 1; i <= 1000; i++) {
+            Client client = Client.builder()
+                    .firstName("First Name: " + Integer.toString(i))
+                    .lastName("Last Name: " + Integer.toString(i))
+                    .phone("Phone: " + Integer.toString(i))
+                    .email("Email: " + Integer.toString(i))
+                    .license("License Number: " + Integer.toString(i))
+                    .licenseImageUrl("License Image URL: " + Integer.toString(i))
+                    .build();
+
+            int num = i;
+            Amplify.API.mutate(
+                    ModelMutation.create(client),
+                    response -> Log.i("AmplifyDummyClient", Integer.toString(num)),
+                    error -> Log.e("Amplify.DummyClient", Integer.toString(num))
             );
         }
     }

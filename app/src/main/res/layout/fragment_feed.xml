@@ -5,6 +5,17 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_purple">
 
+    <Button
+        android:id="@+id/findClientButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="30dp"
+        android:text="Find Client" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/checkedOutRecyclerView"
         android:layout_width="338dp"
@@ -34,11 +45,12 @@
         android:id="@+id/findCarButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/findClientButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="49dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="30dp"
+        android:layout_toStartOf="@+id/findClientButton"
         android:text="Find Car" />
 
 </RelativeLayout>

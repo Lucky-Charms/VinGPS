@@ -21,6 +21,7 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Car;
 import com.luckycharms.vingps.R;
+import com.luckycharms.vingps.activities.ClientListActivity;
 import com.luckycharms.vingps.activities.VehicleDetailActivity;
 import com.luckycharms.vingps.activities.VehicleListActivity;
 import com.luckycharms.vingps.adapters.CarSearchRecyclerViewAdapter;
@@ -40,12 +41,19 @@ public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapt
         initializeRecyclerView(view, this);
         getCarsFromAWS(view);
         addFindCarButtonListener(view);
+        addFindClientButtonListener(view);
         return view;
     }
 
     public void addFindCarButtonListener(View view) {
         ((Button) view.findViewById(R.id.findCarButton)).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), VehicleListActivity.class));
+        });
+    }
+
+    public void addFindClientButtonListener(View view) {
+        ((Button) view.findViewById(R.id.findClientButton)).setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), ClientListActivity.class));
         });
     }
 
