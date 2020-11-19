@@ -28,7 +28,16 @@ public class ClientSearchRecyclerViewAdapter extends RecyclerView.Adapter<Client
     @Override
     public ClientViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_client_search, parent, false);
+
         ClientViewHolder clientViewHolder = new ClientViewHolder(view);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.ClientFragmentListener(clientViewHolder.client);
+            }
+        });
+
         return clientViewHolder;
     }
 
@@ -46,8 +55,8 @@ public class ClientSearchRecyclerViewAdapter extends RecyclerView.Adapter<Client
     }
 
     public static class ClientViewHolder extends RecyclerView.ViewHolder {
-        Client client;
-        View fragment;
+        public Client client;
+        public View fragment;
 
         public ClientViewHolder(@NonNull View itemView) {
             super(itemView);
