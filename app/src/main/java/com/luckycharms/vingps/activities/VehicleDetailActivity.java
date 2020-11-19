@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vehicle_detail);
 
         Intent intent = getIntent();
+        TextView carYear = VehicleDetailActivity.this.findViewById(R.id.carDetailYear);
         TextView carMake = VehicleDetailActivity.this.findViewById(R.id.carDetailMake);
         TextView carModel = VehicleDetailActivity.this.findViewById(R.id.carDetailModel);
         TextView carColor = VehicleDetailActivity.this.findViewById(R.id.carDetailColor);
@@ -25,13 +27,15 @@ public class VehicleDetailActivity extends AppCompatActivity {
         TextView carVin = VehicleDetailActivity.this.findViewById(R.id.carDetailVIN);
         TextView carStatus = VehicleDetailActivity.this.findViewById(R.id.carDetailStatus);
 
+        String status = intent.getExtras().getBoolean("status") ? "Checked out" : "Available";
 
-//        carMake.setText(intent.getExtras().toString("make"));
-//        carModel.setText(intent.getExtras().toString("model"));
-//        carColor.setText(intent.getExtras().toString("color"));
-//        carPrice.setText(intent.getExtras().toString("price"));
-//        carVin.setText(intent.getExtras().toString("vin"));
-//        carStatus.setText(intent.getExtras().toString("status"));
+        carYear.setText(intent.getExtras().getString("year"));
+        carMake.setText(intent.getExtras().getString("make"));
+        carModel.setText(intent.getExtras().getString("model"));
+        carColor.setText(intent.getExtras().getString("color"));
+        carPrice.setText(intent.getExtras().getString("price"));
+        carVin.setText(intent.getExtras().getString("vin"));
+        carStatus.setText(status);
 
         Button checkCarLocationButton = this.findViewById(R.id.locateCarButton);
         checkCarLocationButton.setOnClickListener(new View.OnClickListener() {
