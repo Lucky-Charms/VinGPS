@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/black"
+    android:background="@color/blackboard"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Coding in Flow"
+        android:text="VinGPS"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView

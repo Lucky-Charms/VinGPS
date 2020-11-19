@@ -17,16 +17,6 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-        Button logoutButton = FeedActivity.this.findViewById(R.id.logoutButton);
-        logoutButton.setOnClickListener((v -> {
-            Amplify.Auth.signOut(
-                    () -> Log.i("Amplify.logout", "Logged out Successfully"),
-                    error -> Log.e("Amplify.logout", error.toString())
-            );
-            startActivity(new Intent(FeedActivity.this, MainActivity.class));
-        }));
-
-
         Button gothere = findViewById(R.id.button3);
         gothere.setOnClickListener((view) -> {
             Intent intent = new Intent(FeedActivity.this, VicLocationActivity.class);

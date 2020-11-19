@@ -40,12 +40,12 @@ public final class Car implements Model {
   private final @ModelField(targetType="String") String color;
   private final @ModelField(targetType="String") String price;
   private final @ModelField(targetType="String") String vin;
-  private final @ModelField(targetType="String") String lat;
-  private final @ModelField(targetType="String") String lon;
-  private final @ModelField(targetType="Boolean") Boolean status;
+  public @ModelField(targetType="String") String lat;
+  public @ModelField(targetType="String") String lon;
+  public @ModelField(targetType="Boolean") Boolean status;
   private final @ModelField(targetType="String") String imageUrl;
-  private final @ModelField(targetType="String") String lastUserCheckedOut;
-  private final @ModelField(targetType="Client") @BelongsTo(targetName = "carClientId", type = Client.class) Client client;
+  public @ModelField(targetType="String") String lastUserCheckedOut;
+  public @ModelField(targetType="Client") @BelongsTo(targetName = "carClientId", type = Client.class) Client client;
   public String getId() {
       return id;
   }
