@@ -1,9 +1,15 @@
-
 package com.luckycharms.vingps.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,6 +30,8 @@ import com.luckycharms.vingps.R;
 public class MainActivity extends AppCompatActivity {
 
     Handler handleCheckedLoggedIn;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Adding Event Listeners
         addLoginListener();
-        addMocks();
+//        addMocks();
         getIsSignedIn();
+
+
+
     }
 
 //    @Override
@@ -108,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void getLocation() {
+
+    }
 
     public void addMocks() {
         Client client = Client.builder().firstName("Ted")
@@ -121,10 +135,11 @@ public class MainActivity extends AppCompatActivity {
                 ModelMutation.create(Car.builder()
                         .make("Ford")
                         .model("Escort")
+                        .year("2018")
                         .color("Blue")
                         .price("$13,140")
                         .vin("AFGERGAEfFG235WEF5DB43")
-                        .lat("43.126326")
+                        .lat("47.126326")
                         .lon("-122.456123")
                         .status(false)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
@@ -146,13 +161,14 @@ public class MainActivity extends AppCompatActivity {
                 ModelMutation.create(Car.builder()
                         .make("Toyota")
                         .model("Tacoma")
+                        .year("2018")
                         .color("Red")
                         .price("$23,530")
                         .vin("AFGERGAWCFG235TTFFK53G")
-                        .lat("43.126327")
+                        .lat("47.126327")
                         .lon("-122.456765")
                         .status(false)
-                        .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
+                        .imageUrl("https://img2.carmax.com/img/vehicles/19496963/1/385.jpg")
                         .lastUserCheckedOut("Bill")
                         .client(client1)
                         .build()),
@@ -174,10 +190,10 @@ public class MainActivity extends AppCompatActivity {
                         .color("Silver")
                         .price("$44,650")
                         .vin("AFHYNGAED54335WEF34KL6")
-                        .lat("43.126545")
+                        .lat("47.126545")
                         .lon("-122.456767")
                         .status(false)
-                        .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
+                        .imageUrl("https://static.tcimg.net/vehicles/primary/6d0377b69398fa6b/2020-Mercedes-Benz-C-Class-white-full_color-driver_side_front_quarter.png")
                         .lastUserCheckedOut("Bill")
                         .client(client2)
                         .build()),
@@ -199,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                         .color("Black")
                         .price("$33,245")
                         .vin("AFGERGAAFFG235WEF3465Y")
-                        .lat("43.126561")
+                        .lat("47.126561")
                         .lon("-122.456321")
                         .status(false)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
@@ -224,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                         .color("White")
                         .price("$31,000")
                         .vin("AFGGSQAEDFG235WEF65KO0")
-                        .lat("43.126432")
+                        .lat("47.126432")
                         .lon("-122.456236")
                         .status(true)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
@@ -249,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
                         .color("Red")
                         .price("$11,000")
                         .vin("AFGERGAEDFG235WEF983HFG")
-                        .lat("43.126209")
+                        .lat("47.126209")
                         .lon("-122.456943")
                         .status(true)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
@@ -293,6 +309,8 @@ public class MainActivity extends AppCompatActivity {
             );
         }
     }
+
+
 
     public void createDummyClients() {
         for (int i = 1; i <= 1000; i++) {
