@@ -22,9 +22,8 @@
         android:id="@+id/distance_text"
         android:layout_width="153dp"
         android:layout_height="38dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="ToDo:DistanceAway"
+        android:layout_marginTop="24dp"
+        android:text="Distance: 330 meters."
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toBottomOf="@+id/map" />

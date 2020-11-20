@@ -129,21 +129,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
                             REQUEST_CODE_LOCATION_PERMISSION
                     );
                 } else {
-                    getCurrentLocation();
-                    Log.i("HELLO!!!", latString + lonString);
-                    Amplify.API.query(
-                            ModelQuery.get(Car.class, itemId),
-                            response -> {
-                                Log.i("Success: Grabbing car item", response.getData().toString());
-                                Car carItem = response.getData().copyOfBuilder()
-                                        .status(false).lat(latString).lon(lonString)
-                                        .id(itemId).build();
-                                Amplify.API.mutate(ModelMutation.update(carItem),
-                                        result -> Log.i("Success: Updating car status", result.getData().toString()),
-                                        error -> Log.e("Updating car status", error.toString()));
-                            },
-                            error -> Log.e("Updating car status", error.toString())
-                    );
+                    getCurrentLocation(itemId);
                 }
             }
         });
@@ -155,14 +141,68 @@ public class VehicleDetailActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getCurrentLocation();
+                getCurrentLocation2();
             } else {
                 Toast.makeText(this, "Location Permission Denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void getCurrentLocation() {
+    private void getCurrentLocation(String itemId) {
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        LocationServices.getFusedLocationProviderClient(VehicleDetailActivity.this)
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
+
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        double startLat;
+                        double startLon;
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(VehicleDetailActivity.this)
+                                .removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            int latestLocationIndex = locationResult.getLocations().size() - 1;
+                            double latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
+                            double longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+
+                            latString = Double.toString(latitude);
+                            lonString = Double.toString(longitude);
+
+                            Log.i("Coords", latString + lonString);
+
+                            Amplify.API.query(
+                                    ModelQuery.get(Car.class, itemId),
+                                    response -> {
+
+                                        Log.i("Success: Grabbing car item", response.getData().toString());
+                                        Car carItem = response.getData();
+                                        carItem.status = false;
+                                        Log.i("latLon", latString + lonString);
+                                        carItem.lat = latString;
+                                        carItem.lon = lonString;
+                                        Amplify.API.mutate(ModelMutation.update(carItem),
+                                                result -> {
+                                                    Log.i("Success: Updating car status", result.toString());
+                                                },
+                                                error -> Log.e("Updating car status", error.toString()));
+                                    },
+                                    error -> Log.e("Updating car status", error.toString())
+                            );
+                        }
+
+                    }
+                }, Looper.getMainLooper());
+    }
+
+    private void getCurrentLocation2() {
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(1000);
         locationRequest.setFastestInterval(3000);
