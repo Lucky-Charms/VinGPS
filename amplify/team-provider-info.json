@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vingps-dev-164208-authRole",
+      "UnauthRoleArn": "arn:aws:iam::459500703457:role/amplify-vingps-dev-164208-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::459500703457:role/amplify-vingps-dev-164208-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-vingps-dev-164208-deployment",
+      "UnauthRoleName": "amplify-vingps-dev-164208-unauthRole",
+      "StackName": "amplify-vingps-dev-164208",
+      "StackId": "arn:aws:cloudformation:us-west-2:459500703457:stack/amplify-vingps-dev-164208/3ab29fb0-2ac9-11eb-b4b6-027099ac82b7",
+      "AmplifyAppId": "d1oah7xoxcdg2s"
+    }
+  }
+}

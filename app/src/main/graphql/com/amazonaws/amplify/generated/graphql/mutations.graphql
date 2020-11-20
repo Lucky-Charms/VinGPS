@@ -16,20 +16,15 @@ mutation CreateCar(
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
+    clients {
+      items {
+        id
+        carID
+        clientID
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
+      nextToken
     }
     createdAt
     updatedAt
@@ -52,20 +47,15 @@ mutation UpdateCar(
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
+    clients {
+      items {
+        id
+        carID
+        clientID
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
+      nextToken
     }
     createdAt
     updatedAt
@@ -88,20 +78,15 @@ mutation DeleteCar(
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
+    clients {
+      items {
+        id
+        carID
+        clientID
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
+      nextToken
     }
     createdAt
     updatedAt
@@ -165,17 +150,8 @@ mutation CreateClient(
     cars {
       items {
         id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
+        carID
+        clientID
         createdAt
         updatedAt
       }
@@ -201,17 +177,8 @@ mutation UpdateClient(
     cars {
       items {
         id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
+        carID
+        clientID
         createdAt
         updatedAt
       }
@@ -237,21 +204,150 @@ mutation DeleteClient(
     cars {
       items {
         id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
+        carID
+        clientID
         createdAt
         updatedAt
       }
       nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCarClient(
+  $input: CreateCarClientInput!
+  $condition: ModelCarClientConditionInput
+) {
+  createCarClient(input: $input, condition: $condition) {
+    id
+    carID
+    clientID
+    car {
+      id
+      make
+      model
+      year
+      color
+      price
+      vin
+      lat
+      lon
+      status
+      imageUrl
+      lastUserCheckedOut
+      clients {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCarClient(
+  $input: UpdateCarClientInput!
+  $condition: ModelCarClientConditionInput
+) {
+  updateCarClient(input: $input, condition: $condition) {
+    id
+    carID
+    clientID
+    car {
+      id
+      make
+      model
+      year
+      color
+      price
+      vin
+      lat
+      lon
+      status
+      imageUrl
+      lastUserCheckedOut
+      clients {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCarClient(
+  $input: DeleteCarClientInput!
+  $condition: ModelCarClientConditionInput
+) {
+  deleteCarClient(input: $input, condition: $condition) {
+    id
+    carID
+    clientID
+    car {
+      id
+      make
+      model
+      year
+      color
+      price
+      vin
+      lat
+      lon
+      status
+      imageUrl
+      lastUserCheckedOut
+      clients {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt

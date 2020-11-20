@@ -13,20 +13,15 @@ query GetCar($id: ID!) {
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
+    clients {
+      items {
+        id
+        carID
+        clientID
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
+      nextToken
     }
     createdAt
     updatedAt
@@ -47,17 +42,8 @@ query ListCars($filter: ModelCarFilterInput, $limit: Int, $nextToken: String) {
       status
       imageUrl
       lastUserCheckedOut
-      client {
-        id
-        firstName
-        lastName
-        phone
-        email
-        lastSalesPerson
-        license
-        licenseImageUrl
-        createdAt
-        updatedAt
+      clients {
+        nextToken
       }
       createdAt
       updatedAt
@@ -107,17 +93,8 @@ query GetClient($id: ID!) {
     cars {
       items {
         id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
+        carID
+        clientID
         createdAt
         updatedAt
       }

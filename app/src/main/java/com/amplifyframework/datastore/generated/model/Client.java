@@ -36,7 +36,7 @@ public final class Client implements Model {
   private final @ModelField(targetType="String") String lastSalesPerson;
   private final @ModelField(targetType="String") String license;
   private final @ModelField(targetType="String") String licenseImageUrl;
-  private final @ModelField(targetType="Car") @HasMany(associatedWith = "client", type = Car.class) List<Car> cars = null;
+  private final @ModelField(targetType="CarClient") @HasMany(associatedWith = "clientCarsId", type = CarClient.class) List<CarClient> cars = null;
   public String getId() {
       return id;
   }
@@ -69,7 +69,7 @@ public final class Client implements Model {
       return licenseImageUrl;
   }
   
-  public List<Car> getCars() {
+  public List<CarClient> getCars() {
       return cars;
   }
   

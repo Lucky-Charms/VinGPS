@@ -1,0 +1,38 @@
+type Car @model {
+  id: ID!
+  make: String
+  model: String
+  year: String
+  color: String
+  price: String
+  vin: String
+  lat: String
+  lon: String
+  status: Boolean
+  imageUrl: String
+  lastUserCheckedOut: String
+  clients: [CarClient] @connection(keyName: "getClient")
+}
+type SalesPerson @model {
+  id: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  phone: String
+}
+type Client @model {
+  id: ID!
+  firstName: String
+  lastName: String
+  phone: String
+  email: String
+  lastSalesPerson: String
+  license: String
+  licenseImageUrl: String
+  cars: [CarClient] @connection(keyName: "getCar")
+}
+type CarClient @model {
+  id: ID!
+  car: Car! @connection(keyName: "getCar")
+  client: Client! @connection(keyName: "getClient")
+}

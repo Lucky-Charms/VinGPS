@@ -13,20 +13,15 @@ subscription OnCreateCar {
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
+    clients {
+      items {
+        id
+        carID
+        clientID
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
+      nextToken
     }
     createdAt
     updatedAt
@@ -46,20 +41,15 @@ subscription OnUpdateCar {
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
+    clients {
+      items {
+        id
+        carID
+        clientID
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
+      nextToken
     }
     createdAt
     updatedAt
@@ -79,20 +69,15 @@ subscription OnDeleteCar {
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
+    clients {
+      items {
+        id
+        carID
+        clientID
+        createdAt
+        updatedAt
       }
-      createdAt
-      updatedAt
+      nextToken
     }
     createdAt
     updatedAt
@@ -144,17 +129,8 @@ subscription OnCreateClient {
     cars {
       items {
         id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
+        carID
+        clientID
         createdAt
         updatedAt
       }
@@ -177,17 +153,8 @@ subscription OnUpdateClient {
     cars {
       items {
         id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
+        carID
+        clientID
         createdAt
         updatedAt
       }
@@ -210,21 +177,141 @@ subscription OnDeleteClient {
     cars {
       items {
         id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
+        carID
+        clientID
         createdAt
         updatedAt
       }
       nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCarClient {
+  onCreateCarClient {
+    id
+    carID
+    clientID
+    car {
+      id
+      make
+      model
+      year
+      color
+      price
+      vin
+      lat
+      lon
+      status
+      imageUrl
+      lastUserCheckedOut
+      clients {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCarClient {
+  onUpdateCarClient {
+    id
+    carID
+    clientID
+    car {
+      id
+      make
+      model
+      year
+      color
+      price
+      vin
+      lat
+      lon
+      status
+      imageUrl
+      lastUserCheckedOut
+      clients {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCarClient {
+  onDeleteCarClient {
+    id
+    carID
+    clientID
+    car {
+      id
+      make
+      model
+      year
+      color
+      price
+      vin
+      lat
+      lon
+      status
+      imageUrl
+      lastUserCheckedOut
+      clients {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    client {
+      id
+      firstName
+      lastName
+      phone
+      email
+      lastSalesPerson
+      license
+      licenseImageUrl
+      cars {
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt

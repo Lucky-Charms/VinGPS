@@ -21,13 +21,18 @@ import android.widget.TextView;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Car;
+import com.amplifyframework.datastore.generated.model.CarClient;
 import com.amplifyframework.datastore.generated.model.Client;
 import com.luckycharms.vingps.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,15 +60,13 @@ public class MainActivity extends AppCompatActivity {
         configureAws();
 
         // Hardcoding Dummy Data
-        addMocks();
+//        addMocks();
 //        createDummyCars();
 //        createDummyClients();
-
+        testDB();
 
         // Adding Event Listeners
         addLoginListener();
-      
-//        addMocks();
 
         getIsSignedIn();
 
@@ -149,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client)
+//                        .client(client)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
@@ -176,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://img2.carmax.com/img/vehicles/19496963/1/385.jpg")
                         .lastUserCheckedOut("Bill")
-                        .client(client1)
+//                        .client(client1)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
@@ -202,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://static.tcimg.net/vehicles/primary/6d0377b69398fa6b/2020-Mercedes-Benz-C-Class-white-full_color-driver_side_front_quarter.png")
                         .lastUserCheckedOut("Bill")
-                        .client(client2)
+//                        .client(client2)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
@@ -228,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client3)
+//                        .client(client3)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
@@ -254,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                         .status(true)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client4)
+//                        .client(client4)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
@@ -280,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
                         .status(true)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client5)
+//                        .client(client5)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
@@ -308,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
                     .lat(Integer.toString(i))
                     .lon(Integer.toString(i))
                     .status(true)
-                    .client(client)
+//                    .client(client)
                     .build();
 
             int num = i;
@@ -319,8 +322,6 @@ public class MainActivity extends AppCompatActivity {
             );
         }
     }
-
-
 
     public void createDummyClients() {
         for (int i = 1; i <= 1000; i++) {
@@ -340,6 +341,120 @@ public class MainActivity extends AppCompatActivity {
                     error -> Log.e("Amplify.DummyClient", Integer.toString(num))
             );
         }
+    }
+
+    public void testDB() {
+        // Make and save a Car
+        // Make and save a Client
+
+        // Query and grab the car
+        // Query and grab the client
+
+        // Add the car to the client
+        // Add the client to the car
+        // Mutate the car
+        // Mutate the client
+
+        Car car = Car.builder()
+                .year("Test")
+                .make("Test")
+                .model("Test")
+                .color("Test")
+                .price("Test")
+                .vin("Test")
+                .lat("47.126432")
+                .lon("-122.456236")
+                .status(true)
+                .imageUrl("Test")
+                .lastUserCheckedOut("Test")
+                .build();
+
+        Client client = Client.builder()
+                .firstName("Test")
+                .lastName("Test")
+                .phone("Test")
+                .email("Test")
+                .license("Test")
+                .licenseImageUrl("Test")
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(car),
+                response -> {
+//                    car.id = response.getData().getId();
+                    Log.i("Amplify.Test", "Car created");
+                },
+                error -> Log.e("Amplify.Test", error.toString())
+        );
+        Amplify.API.mutate(
+                ModelMutation.create(client),
+                response -> {
+//                    client.id = response.getData().getId();
+                    Log.i("Amplify.Test", "Client created");
+                },
+                error -> Log.e("Amplify.Test", error.toString())
+        );
+
+        ArrayList<Car> cars = new ArrayList<>();
+        ArrayList<Client> clients = new ArrayList<>();
+
+//        Amplify.API.query(
+//                ModelQuery.list(Car.class),
+//                response -> {
+//                    int i = 0;
+//                    for (Car car : response.getData()) {
+//                        i++;
+//                        cars.add(car);
+//                    }
+//                    Log.i("Amplify.Test", Integer.toString(i));
+//                },
+//                error -> Log.e("Amplify.Test", error.toString())
+//        );
+//        Amplify.API.query(
+//                ModelQuery.list(Client.class),
+//                response -> {
+//                    int i = 0;
+//                    for (Client client : response.getData()) {
+//                        i++;
+//                        clients.add(client);
+//                    }
+//                    Log.i("Amplify.Test", Integer.toString(i));
+//                },
+//                error -> Log.e("Amplify.Test", error.toString())
+//        );
+//
+//        Car car = cars.get(0);
+//        Client client = clients.get(0);
+
+        CarClient connection = CarClient.builder()
+                .car(car)
+                .client(client)
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(connection),
+                response -> {
+                    Log.i("Amplify.Test", "Connection created");
+                },
+                error -> Log.e("Amplify.Test", error.toString())
+        );
+
+        Amplify.API.query(
+                ModelQuery.list(Client.class),
+                response -> {
+                    int i = 0;
+                    for (Client item : response.getData()) {
+                        i++;
+                        clients.add(item);
+                    }
+                    Log.i("Amplify.Test", Integer.toString(i));
+                },
+                error -> Log.e("Amplify.Test", error.toString())
+        );
+
+        Client pleaseWork = clients.get(0);
+        Log.i("Amplify.Test", pleaseWork.toString());
+        Log.i("Amplify.Test", Arrays.toString(pleaseWork.getCars().toArray()));
     }
 }
 

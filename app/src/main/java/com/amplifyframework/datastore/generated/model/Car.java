@@ -1,6 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
-import com.amplifyframework.core.model.annotations.BelongsTo;
+import com.amplifyframework.core.model.annotations.HasMany;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +32,6 @@ public final class Car implements Model {
   public static final QueryField STATUS = field("status");
   public static final QueryField IMAGE_URL = field("imageUrl");
   public static final QueryField LAST_USER_CHECKED_OUT = field("lastUserCheckedOut");
-  public static final QueryField CLIENT = field("carClientId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String make;
   private final @ModelField(targetType="String") String model;
@@ -40,12 +39,12 @@ public final class Car implements Model {
   private final @ModelField(targetType="String") String color;
   private final @ModelField(targetType="String") String price;
   private final @ModelField(targetType="String") String vin;
-  public @ModelField(targetType="String") String lat;
-  public @ModelField(targetType="String") String lon;
+  private final @ModelField(targetType="String") String lat;
+  private final @ModelField(targetType="String") String lon;
   public @ModelField(targetType="Boolean") Boolean status;
   private final @ModelField(targetType="String") String imageUrl;
-  public @ModelField(targetType="String") String lastUserCheckedOut;
-  public @ModelField(targetType="Client") @BelongsTo(targetName = "carClientId", type = Client.class) Client client;
+  private final @ModelField(targetType="String") String lastUserCheckedOut;
+  private final @ModelField(targetType="CarClient") @HasMany(associatedWith = "carClientsId", type = CarClient.class) List<CarClient> clients = null;
   public String getId() {
       return id;
   }
@@ -94,11 +93,11 @@ public final class Car implements Model {
       return lastUserCheckedOut;
   }
   
-  public Client getClient() {
-      return client;
+  public List<CarClient> getClients() {
+      return clients;
   }
   
-  private Car(String id, String make, String model, String year, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
+  private Car(String id, String make, String model, String year, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut) {
     this.id = id;
     this.make = make;
     this.model = model;
@@ -111,7 +110,6 @@ public final class Car implements Model {
     this.status = status;
     this.imageUrl = imageUrl;
     this.lastUserCheckedOut = lastUserCheckedOut;
-    this.client = client;
   }
   
   @Override
@@ -133,8 +131,7 @@ public final class Car implements Model {
               ObjectsCompat.equals(getLon(), car.getLon()) &&
               ObjectsCompat.equals(getStatus(), car.getStatus()) &&
               ObjectsCompat.equals(getImageUrl(), car.getImageUrl()) &&
-              ObjectsCompat.equals(getLastUserCheckedOut(), car.getLastUserCheckedOut()) &&
-              ObjectsCompat.equals(getClient(), car.getClient());
+              ObjectsCompat.equals(getLastUserCheckedOut(), car.getLastUserCheckedOut());
       }
   }
   
@@ -153,7 +150,6 @@ public final class Car implements Model {
       .append(getStatus())
       .append(getImageUrl())
       .append(getLastUserCheckedOut())
-      .append(getClient())
       .toString()
       .hashCode();
   }
@@ -173,8 +169,7 @@ public final class Car implements Model {
       .append("lon=" + String.valueOf(getLon()) + ", ")
       .append("status=" + String.valueOf(getStatus()) + ", ")
       .append("imageUrl=" + String.valueOf(getImageUrl()) + ", ")
-      .append("lastUserCheckedOut=" + String.valueOf(getLastUserCheckedOut()) + ", ")
-      .append("client=" + String.valueOf(getClient()))
+      .append("lastUserCheckedOut=" + String.valueOf(getLastUserCheckedOut()))
       .append("}")
       .toString();
   }
@@ -214,7 +209,6 @@ public final class Car implements Model {
       null,
       null,
       null,
-      null,
       null
     );
   }
@@ -231,8 +225,7 @@ public final class Car implements Model {
       lon,
       status,
       imageUrl,
-      lastUserCheckedOut,
-      client);
+      lastUserCheckedOut);
   }
   public interface BuildStep {
     Car build();
@@ -248,7 +241,6 @@ public final class Car implements Model {
     BuildStep status(Boolean status);
     BuildStep imageUrl(String imageUrl);
     BuildStep lastUserCheckedOut(String lastUserCheckedOut);
-    BuildStep client(Client client);
   }
   
 
@@ -265,7 +257,6 @@ public final class Car implements Model {
     private Boolean status;
     private String imageUrl;
     private String lastUserCheckedOut;
-    private Client client;
     @Override
      public Car build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -282,8 +273,7 @@ public final class Car implements Model {
           lon,
           status,
           imageUrl,
-          lastUserCheckedOut,
-          client);
+          lastUserCheckedOut);
     }
     
     @Override
@@ -352,12 +342,6 @@ public final class Car implements Model {
         return this;
     }
     
-    @Override
-     public BuildStep client(Client client) {
-        this.client = client;
-        return this;
-    }
-    
     /** 
      * WARNING: Do not set ID when creating a new object. Leave this blank and one will be auto generated for you.
      * This should only be set when referring to an already existing object.
@@ -381,7 +365,7 @@ public final class Car implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String make, String model, String year, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut, Client client) {
+    private CopyOfBuilder(String id, String make, String model, String year, String color, String price, String vin, String lat, String lon, Boolean status, String imageUrl, String lastUserCheckedOut) {
       super.id(id);
       super.make(make)
         .model(model)
@@ -393,8 +377,7 @@ public final class Car implements Model {
         .lon(lon)
         .status(status)
         .imageUrl(imageUrl)
-        .lastUserCheckedOut(lastUserCheckedOut)
-        .client(client);
+        .lastUserCheckedOut(lastUserCheckedOut);
     }
     
     @Override
@@ -450,11 +433,6 @@ public final class Car implements Model {
     @Override
      public CopyOfBuilder lastUserCheckedOut(String lastUserCheckedOut) {
       return (CopyOfBuilder) super.lastUserCheckedOut(lastUserCheckedOut);
-    }
-    
-    @Override
-     public CopyOfBuilder client(Client client) {
-      return (CopyOfBuilder) super.client(client);
     }
   }
   
