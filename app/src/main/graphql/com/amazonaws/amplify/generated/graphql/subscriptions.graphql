@@ -13,21 +13,6 @@ subscription OnCreateCar {
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -46,21 +31,6 @@ subscription OnUpdateCar {
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -79,21 +49,6 @@ subscription OnDeleteCar {
     status
     imageUrl
     lastUserCheckedOut
-    client {
-      id
-      firstName
-      lastName
-      phone
-      email
-      lastSalesPerson
-      license
-      licenseImageUrl
-      cars {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
     createdAt
     updatedAt
   }
@@ -141,25 +96,6 @@ subscription OnCreateClient {
     lastSalesPerson
     license
     licenseImageUrl
-    cars {
-      items {
-        id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
     createdAt
     updatedAt
   }
@@ -174,25 +110,6 @@ subscription OnUpdateClient {
     lastSalesPerson
     license
     licenseImageUrl
-    cars {
-      items {
-        id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
     createdAt
     updatedAt
   }
@@ -207,25 +124,6 @@ subscription OnDeleteClient {
     lastSalesPerson
     license
     licenseImageUrl
-    cars {
-      items {
-        id
-        make
-        model
-        year
-        color
-        price
-        vin
-        lat
-        lon
-        status
-        imageUrl
-        lastUserCheckedOut
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
     createdAt
     updatedAt
   }

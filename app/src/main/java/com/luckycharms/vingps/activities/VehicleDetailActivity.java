@@ -82,21 +82,12 @@ public class VehicleDetailActivity extends AppCompatActivity {
                         ModelQuery.get(Car.class, itemId),
                         response -> {
                             Log.i("Success: Grabbing car item", response.getData().toString());
-//                            Car carItemTemp = response.getData();
-//                            ModelQuery.get(Client.class, clientId),
-//                            success -> {
-//                                Log.i("Success: Grabbing client item")
-//
-//                                }
-//                            Car carItem = response.getData();
-//                            carItem.status = true;
-//                            Car carItem = response.getData().copyOfBuilder()
-//                                    .status(true)
-//                                    .client(response.getData().getClient())
-//                                    .id(itemId).build();
-//                            Amplify.API.mutate(ModelMutation.update(carItem),
-//                                    result -> Log.i("Success: Updating car status", result.getData().toString()),
-//                                    error -> Log.e("Updating car status", error.toString()));
+                            Car carItem = response.getData().copyOfBuilder()
+                                    .status(true)
+                                    .id(itemId).build();
+                            Amplify.API.mutate(ModelMutation.update(carItem),
+                                    result -> Log.i("Success: Updating car status", result.getData().toString()),
+                                    error -> Log.e("Updating car status", error.toString()));
                         },
                         error -> Log.e("Updating car status", error.toString())
                 );
@@ -113,8 +104,9 @@ public class VehicleDetailActivity extends AppCompatActivity {
                         ModelQuery.get(Car.class, itemId),
                         response -> {
                             Log.i("Success: Grabbing car item", response.getData().toString());
-                            Car carItem = response.getData();
-                            carItem.status = false;
+                            Car carItem = response.getData().copyOfBuilder()
+                                    .status(false)
+                                    .id(itemId).build();
                             Amplify.API.mutate(ModelMutation.update(carItem),
                                     result -> Log.i("Success: Updating car status", result.getData().toString()),
                                     error -> Log.e("Updating car status", error.toString()));
