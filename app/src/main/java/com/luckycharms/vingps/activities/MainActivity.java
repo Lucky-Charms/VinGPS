@@ -55,20 +55,11 @@ public class MainActivity extends AppCompatActivity {
         configureAws();
 
         // Hardcoding Dummy Data
-        addMocks();
-//        createDummyCars();
-//        createDummyClients();
-
+//        addMocks();
 
         // Adding Event Listeners
         addLoginListener();
-      
-//        addMocks();
-
         getIsSignedIn();
-
-
-
     }
 
 //    @Override
@@ -123,18 +114,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getLocation() {
-
-    }
-
     public void addMocks() {
-        Client client = Client.builder().firstName("Ted")
-                .lastName("Talks")
-                .phone("206-234-6231")
-                .email("thisplace@gmail.com")
-                .license("temp")
-                .licenseImageUrl("temp")
-                .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
                         .year("1969")
@@ -149,19 +129,11 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
         );
 
-        Client client1 = Client.builder().firstName("Ted")
-                .lastName("Talks")
-                .phone("206-234-6231")
-                .email("thisplace@gmail.com")
-                .license("temp")
-                .licenseImageUrl("temp")
-                .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
                         .year("2000")
@@ -176,19 +148,11 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://img2.carmax.com/img/vehicles/19496963/1/385.jpg")
                         .lastUserCheckedOut("Bill")
-                        .client(client1)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
         );
 
-        Client client2 = Client.builder().firstName("Ted")
-                .lastName("Talks")
-                .phone("206-234-6231")
-                .email("thisplace@gmail.com")
-                .license("temp")
-                .licenseImageUrl("temp")
-                .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
                         .year("2020")
@@ -202,19 +166,11 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://static.tcimg.net/vehicles/primary/6d0377b69398fa6b/2020-Mercedes-Benz-C-Class-white-full_color-driver_side_front_quarter.png")
                         .lastUserCheckedOut("Bill")
-                        .client(client2)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
         );
 
-        Client client3 = Client.builder().firstName("Ted")
-                .lastName("Talks")
-                .phone("206-234-6231")
-                .email("thisplace@gmail.com")
-                .license("temp")
-                .licenseImageUrl("temp")
-                .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
                         .year("2050")
@@ -228,19 +184,10 @@ public class MainActivity extends AppCompatActivity {
                         .status(false)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client3)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
         );
-
-        Client client4 = Client.builder().firstName("Ted")
-                .lastName("Talks")
-                .phone("206-234-6231")
-                .email("thisplace@gmail.com")
-                .license("temp")
-                .licenseImageUrl("temp")
-                .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
                         .year("2018")
@@ -254,19 +201,11 @@ public class MainActivity extends AppCompatActivity {
                         .status(true)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client4)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
         );
 
-        Client client5 = Client.builder().firstName("Ted")
-                .lastName("Talks")
-                .phone("206-234-6231")
-                .email("thisplace@gmail.com")
-                .license("temp")
-                .licenseImageUrl("temp")
-                .build();
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()
                         .year("1993")
@@ -280,66 +219,10 @@ public class MainActivity extends AppCompatActivity {
                         .status(true)
                         .imageUrl("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.motortrend.com%2Fcars%2Fford%2Ffocus%2F&psig=AOvVaw1q4jRkkNhTzSyZXDEg6a-s&ust=1605738298957000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLDMqbrPiu0CFQAAAAAdAAAAABAD")
                         .lastUserCheckedOut("Bill")
-                        .client(client5)
                         .build()),
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
         );
-    }
-
-
-    public void createDummyCars() {
-        for (int i = 1; i <= 1000; i++) {
-            Client client = Client.builder()
-                    .firstName("")
-                    .lastName("")
-                    .phone("")
-                    .email("")
-                    .license("")
-                    .licenseImageUrl("")
-                    .build();
-
-            Car car = Car.builder()
-                    .make("Make: " + Integer.toString(i))
-                    .model("Model: " + Integer.toString(i))
-                    .color("Color: " + Integer.toString(i))
-                    .price("Price: " + Integer.toString(i))
-                    .vin("VIN: " + Integer.toString(i))
-                    .lat(Integer.toString(i))
-                    .lon(Integer.toString(i))
-                    .status(true)
-                    .client(client)
-                    .build();
-
-            int num = i;
-            Amplify.API.mutate(
-                    ModelMutation.create(car),
-                    response -> Log.i("Amplify.DummyCar", Integer.toString(num)),
-                    error -> Log.e("Amplify.DummyCar", Integer.toString(num))
-            );
-        }
-    }
-
-
-
-    public void createDummyClients() {
-        for (int i = 1; i <= 1000; i++) {
-            Client client = Client.builder()
-                    .firstName("First Name: " + Integer.toString(i))
-                    .lastName("Last Name: " + Integer.toString(i))
-                    .phone("Phone: " + Integer.toString(i))
-                    .email("Email: " + Integer.toString(i))
-                    .license("License Number: " + Integer.toString(i))
-                    .licenseImageUrl("License Image URL: " + Integer.toString(i))
-                    .build();
-
-            int num = i;
-            Amplify.API.mutate(
-                    ModelMutation.create(client),
-                    response -> Log.i("AmplifyDummyClient", Integer.toString(num)),
-                    error -> Log.e("Amplify.DummyClient", Integer.toString(num))
-            );
-        }
     }
 }
 

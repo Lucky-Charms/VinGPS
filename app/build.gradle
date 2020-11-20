@@ -48,4 +48,7 @@ dependencies {
     // Cognito
     implementation 'com.amplifyframework:aws-auth-cognito:1.4.1'
 
+    // Styling
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha06'
+
 }

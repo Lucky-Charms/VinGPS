@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -128,11 +130,10 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
                         counter++;
                     }
                     Log.i("Amplify.CarSearch", Integer.toString(counter) + " Items Returned");
+                    handler.sendEmptyMessage(1);
                 },
                 error -> Log.e("Amplify.CarSearch", error.toString())
         );
-
-        handler.sendEmptyMessage(1);
     }
 
     @Override
