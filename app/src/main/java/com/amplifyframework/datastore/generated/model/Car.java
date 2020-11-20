@@ -40,7 +40,7 @@ public final class Car implements Model {
   private final @ModelField(targetType="String") String vin;
   private final @ModelField(targetType="String") String lat;
   private final @ModelField(targetType="String") String lon;
-  public @ModelField(targetType="Boolean") Boolean status;
+  private final @ModelField(targetType="Boolean") Boolean status;
   private final @ModelField(targetType="String") String imageUrl;
   private final @ModelField(targetType="String") String lastUserCheckedOut;
   public String getId() {

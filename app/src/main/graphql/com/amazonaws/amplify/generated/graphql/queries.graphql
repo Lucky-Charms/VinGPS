@@ -77,6 +77,7 @@ query GetClient($id: ID!) {
     lastSalesPerson
     license
     licenseImageUrl
+    notes
     createdAt
     updatedAt
   }
@@ -96,6 +97,7 @@ query ListClients(
       lastSalesPerson
       license
       licenseImageUrl
+      notes
       createdAt
       updatedAt
     }

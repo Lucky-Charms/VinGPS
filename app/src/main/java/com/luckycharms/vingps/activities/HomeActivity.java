@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.amplifyframework.core.Amplify;
 import com.google.android.material.navigation.NavigationView;
 import com.luckycharms.vingps.R;
+import com.luckycharms.vingps.fragments.AboutUsFragment;
 import com.luckycharms.vingps.fragments.FeedFragment;
 import com.luckycharms.vingps.fragments.ProfileFragment;
 
@@ -67,9 +68,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(HomeActivity.this, MainActivity.class));
                 break;
             case R.id.nav_about_us:
-                startActivity(new Intent(HomeActivity.this, VehicleDetailActivity.class));
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new AboutUsFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AboutUsFragment()).commit();
                 break;
         }
 
