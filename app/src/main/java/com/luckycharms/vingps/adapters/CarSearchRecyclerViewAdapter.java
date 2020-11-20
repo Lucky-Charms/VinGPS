@@ -47,7 +47,7 @@ public class CarSearchRecyclerViewAdapter extends RecyclerView.Adapter<CarSearch
         ImageView image = holder.itemView.findViewById(R.id.checkedOutCarFragmentImage);
         TextView make = holder.itemView.findViewById(R.id.checkedOutCarFragmentMake);
         TextView model = holder.itemView.findViewById(R.id.checkedOutCarFragmentModel);
-        TextView distance = holder.itemView.findViewById(R.id.checkedOutCarFragmentDistance);
+//        TextView distance = holder.itemView.findViewById(R.id.checkedOutCarFragmentDistance);
         TextView status = holder.itemView.findViewById(R.id.checkedOutCarFragmentStatus);
         String carStatus = holder.car.getStatus() ? "Checked out" : "Available";
 
@@ -55,8 +55,7 @@ public class CarSearchRecyclerViewAdapter extends RecyclerView.Adapter<CarSearch
         make.setText(holder.car.getMake());
         model.setText(holder.car.getModel());
         status.setText(carStatus);
-        // TODO: calculate distance
-        distance.setText("100 meters");
+//        distance.setText("100 meters");
     }
 
     @Override

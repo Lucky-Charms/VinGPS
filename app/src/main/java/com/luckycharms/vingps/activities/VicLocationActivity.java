@@ -71,7 +71,7 @@ public class VicLocationActivity extends AppCompatActivity implements OnMapReady
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        distance_text = findViewById(R.id.distance_text);
+//        distance_text = findViewById(R.id.distance_text);
         Intent intent = getIntent();
 //        distance_text.setText(String.format("Distance to car: %s meters.", CalculationByDistance(startLat, Double.parseDouble(intent.getExtras().getString("lat")), startLon, Double.parseDouble(intent.getExtras().getString("lon")))));
     }
