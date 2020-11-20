@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         // Hardcoding Dummy Data
 //        addMocks();
 
+//        createDummyCars();
+//        createDummyClients();
+
         // Adding Event Listeners
         addLoginListener();
         getIsSignedIn();
@@ -113,6 +116,29 @@ public class MainActivity extends AppCompatActivity {
             );
         });
     }
+
+    public void getLocation() {
+
+    }
+
+    public void createDummyClients() {
+        for (int i = 1; i <= 1000; i++) {
+            Client client = Client.builder()
+                    .firstName("First Name: " + Integer.toString(i))
+                    .lastName("Last Name: " + Integer.toString(i))
+                    .phone("Phone: " + Integer.toString(i))
+                    .email("Email: " + Integer.toString(i))
+                    .license("License Number: " + Integer.toString(i))
+                    .licenseImageUrl("License Image URL: " + Integer.toString(i))
+                    .build();
+
+            int num = i;
+            Amplify.API.mutate(
+                    ModelMutation.create(client),
+                    response -> Log.i("AmplifyDummyClient", Integer.toString(num)),
+                    error -> Log.e("Amplify.DummyClient", Integer.toString(num))
+            );
+        }
 
     public void addMocks() {
         Amplify.API.mutate(
@@ -223,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
                 success -> Log.i("Amplify", "Car added"),
                 error -> Log.e("Amplify", error.toString())
         );
+
     }
 }
 

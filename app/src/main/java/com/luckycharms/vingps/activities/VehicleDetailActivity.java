@@ -120,6 +120,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 endTestDriveButton.setVisibility(View.GONE);
                 startTestDriveButton.setVisibility(View.VISIBLE);
+
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED) {
