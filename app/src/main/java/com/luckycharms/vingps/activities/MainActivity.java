@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     error -> Log.e("Amplify.DummyClient", Integer.toString(num))
             );
         }
-
+    }
     public void addMocks() {
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()

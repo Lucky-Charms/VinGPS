@@ -61,6 +61,8 @@ public class VicLocationActivity extends AppCompatActivity implements OnMapReady
     private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
     private TextView textLocation;
     private TextView distance_text;
+    private double firstLat = 47.716638;
+    private double firstLon = -122.296567;
 
 
     @Override
@@ -88,12 +90,13 @@ public class VicLocationActivity extends AppCompatActivity implements OnMapReady
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
         // Add a marker in Seattle and move the camera
 
+//        Intent intent = getIntent();
+//        lat = Double.parseDouble(intent.getExtras().getString("lat"));
+//        lon = Double.parseDouble(intent.getExtras().getString("lon"));
+//        Log.i("Latitude", intent.getExtras().getString("lat"));
+//        Log.i("Longitude", intent.getExtras().getString("lon"));
         Intent intent = getIntent();
-        lat = Double.parseDouble(intent.getExtras().getString("lat"));
-        lon = Double.parseDouble(intent.getExtras().getString("lon"));
-        Log.i("Latitude", intent.getExtras().getString("lat"));
-        Log.i("Longitude", intent.getExtras().getString("lon"));
-        LatLng location = new LatLng(lat, lon);
+        LatLng location = new LatLng(Double.parseDouble(intent.getExtras().getString("lat")), Double.parseDouble(intent.getExtras().getString("lon")));
         mMap.addMarker(new MarkerOptions()
                 .position(location)
                 .title("Location of Car"));
