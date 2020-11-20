@@ -27,6 +27,7 @@ public final class Client implements Model {
   public static final QueryField LAST_SALES_PERSON = field("lastSalesPerson");
   public static final QueryField LICENSE = field("license");
   public static final QueryField LICENSE_IMAGE_URL = field("licenseImageUrl");
+  public static final QueryField NOTES = field("notes");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String") String firstName;
   private final @ModelField(targetType="String") String lastName;
@@ -35,6 +36,7 @@ public final class Client implements Model {
   private final @ModelField(targetType="String") String lastSalesPerson;
   private final @ModelField(targetType="String") String license;
   private final @ModelField(targetType="String") String licenseImageUrl;
+  private final @ModelField(targetType="String") String notes;
   public String getId() {
       return id;
   }
@@ -67,7 +69,11 @@ public final class Client implements Model {
       return licenseImageUrl;
   }
   
-  private Client(String id, String firstName, String lastName, String phone, String email, String lastSalesPerson, String license, String licenseImageUrl) {
+  public String getNotes() {
+      return notes;
+  }
+  
+  private Client(String id, String firstName, String lastName, String phone, String email, String lastSalesPerson, String license, String licenseImageUrl, String notes) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -76,6 +82,7 @@ public final class Client implements Model {
     this.lastSalesPerson = lastSalesPerson;
     this.license = license;
     this.licenseImageUrl = licenseImageUrl;
+    this.notes = notes;
   }
   
   @Override
@@ -93,7 +100,8 @@ public final class Client implements Model {
               ObjectsCompat.equals(getEmail(), client.getEmail()) &&
               ObjectsCompat.equals(getLastSalesPerson(), client.getLastSalesPerson()) &&
               ObjectsCompat.equals(getLicense(), client.getLicense()) &&
-              ObjectsCompat.equals(getLicenseImageUrl(), client.getLicenseImageUrl());
+              ObjectsCompat.equals(getLicenseImageUrl(), client.getLicenseImageUrl()) &&
+              ObjectsCompat.equals(getNotes(), client.getNotes());
       }
   }
   
@@ -108,6 +116,7 @@ public final class Client implements Model {
       .append(getLastSalesPerson())
       .append(getLicense())
       .append(getLicenseImageUrl())
+      .append(getNotes())
       .toString()
       .hashCode();
   }
@@ -123,7 +132,8 @@ public final class Client implements Model {
       .append("email=" + String.valueOf(getEmail()) + ", ")
       .append("lastSalesPerson=" + String.valueOf(getLastSalesPerson()) + ", ")
       .append("license=" + String.valueOf(getLicense()) + ", ")
-      .append("licenseImageUrl=" + String.valueOf(getLicenseImageUrl()))
+      .append("licenseImageUrl=" + String.valueOf(getLicenseImageUrl()) + ", ")
+      .append("notes=" + String.valueOf(getNotes()))
       .append("}")
       .toString();
   }
@@ -159,6 +169,7 @@ public final class Client implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -171,7 +182,8 @@ public final class Client implements Model {
       email,
       lastSalesPerson,
       license,
-      licenseImageUrl);
+      licenseImageUrl,
+      notes);
   }
   public interface BuildStep {
     Client build();
@@ -183,6 +195,7 @@ public final class Client implements Model {
     BuildStep lastSalesPerson(String lastSalesPerson);
     BuildStep license(String license);
     BuildStep licenseImageUrl(String licenseImageUrl);
+    BuildStep notes(String notes);
   }
   
 
@@ -195,6 +208,7 @@ public final class Client implements Model {
     private String lastSalesPerson;
     private String license;
     private String licenseImageUrl;
+    private String notes;
     @Override
      public Client build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -207,7 +221,8 @@ public final class Client implements Model {
           email,
           lastSalesPerson,
           license,
-          licenseImageUrl);
+          licenseImageUrl,
+          notes);
     }
     
     @Override
@@ -252,6 +267,12 @@ public final class Client implements Model {
         return this;
     }
     
+    @Override
+     public BuildStep notes(String notes) {
+        this.notes = notes;
+        return this;
+    }
+    
     /** 
      * WARNING: Do not set ID when creating a new object. Leave this blank and one will be auto generated for you.
      * This should only be set when referring to an already existing object.
@@ -275,7 +296,7 @@ public final class Client implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String firstName, String lastName, String phone, String email, String lastSalesPerson, String license, String licenseImageUrl) {
+    private CopyOfBuilder(String id, String firstName, String lastName, String phone, String email, String lastSalesPerson, String license, String licenseImageUrl, String notes) {
       super.id(id);
       super.firstName(firstName)
         .lastName(lastName)
@@ -283,7 +304,8 @@ public final class Client implements Model {
         .email(email)
         .lastSalesPerson(lastSalesPerson)
         .license(license)
-        .licenseImageUrl(licenseImageUrl);
+        .licenseImageUrl(licenseImageUrl)
+        .notes(notes);
     }
     
     @Override
@@ -319,6 +341,11 @@ public final class Client implements Model {
     @Override
      public CopyOfBuilder licenseImageUrl(String licenseImageUrl) {
       return (CopyOfBuilder) super.licenseImageUrl(licenseImageUrl);
+    }
+    
+    @Override
+     public CopyOfBuilder notes(String notes) {
+      return (CopyOfBuilder) super.notes(notes);
     }
   }
   

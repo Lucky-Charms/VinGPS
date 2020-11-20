@@ -151,7 +151,6 @@ public class VehicleListActivity extends AppCompatActivity implements CarSearchR
         intent.putExtra("status", car.getStatus());
         intent.putExtra("imageURL", car.getImageUrl());
         intent.putExtra("lastUserCheckedOut", car.getLastUserCheckedOut());
-//        intent.putExtra("client", car.client.);
 
         this.startActivity(intent);
     }

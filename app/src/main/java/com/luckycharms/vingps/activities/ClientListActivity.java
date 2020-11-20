@@ -115,6 +115,6 @@ public class ClientListActivity extends AppCompatActivity implements ClientSearc
         intent.putExtra("licenseImageURL", client.getLicenseImageUrl());
         intent.putExtra("lastSalesPerson", client.getLastSalesPerson());
         Log.i("Amplify.SearchClient", "You are trying to view client: " + client.getFirstName());
-//        startActivity(intent);
+        startActivity(intent);
     }
 }

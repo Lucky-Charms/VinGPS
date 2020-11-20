@@ -31,6 +31,7 @@ import com.luckycharms.vingps.R;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class VehicleDetailActivity extends AppCompatActivity {
     private FusedLocationProviderClient client;
@@ -57,7 +58,6 @@ public class VehicleDetailActivity extends AppCompatActivity {
         String vin = "VIN: " + intent.getExtras().getString("vin");
 
         String itemId = intent.getExtras().getString("id");
-        String clientId = intent.getExtras().getString("client");
         carYear.setText(intent.getExtras().getString("year"));
         carMake.setText(intent.getExtras().getString("make"));
         carModel.setText(intent.getExtras().getString("model"));
@@ -77,8 +77,6 @@ public class VehicleDetailActivity extends AppCompatActivity {
                 Intent intent = getIntent();
                 lat = intent.getExtras().getString("lat");
                 lon = intent.getExtras().getString("lon");
-
-
 
                 Intent goToLocation = new Intent(VehicleDetailActivity.this, VicLocationActivity.class);
                 goToLocation.putExtra("lat", lat);
@@ -124,6 +122,7 @@ public class VehicleDetailActivity extends AppCompatActivity {
                 if (ContextCompat.checkSelfPermission(
                         getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
                 ) != PackageManager.PERMISSION_GRANTED) {
+                    Log.i("AHHHHHHHHH", latString + lonString);
                     ActivityCompat.requestPermissions(
                             VehicleDetailActivity.this,
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -131,27 +130,10 @@ public class VehicleDetailActivity extends AppCompatActivity {
                     );
                 } else {
                     getCurrentLocation(itemId);
-
                 }
             }
         });
 
-//        findViewById(R.id.endTestDriveButton).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (ContextCompat.checkSelfPermission(
-//                        getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
-//                ) != PackageManager.PERMISSION_GRANTED) {
-//                    ActivityCompat.requestPermissions(
-//                            VicLocationActivity.this,
-//                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-//                            REQUEST_CODE_LOCATION_PERMISSION
-//                    );
-//                } else {
-//                    getCurrentLocation();
-//                }
-//            }
-//        });
     }
 
     @Override
@@ -249,16 +231,11 @@ public class VehicleDetailActivity extends AppCompatActivity {
                             lonString = Double.toString(longitude);
 
                             Log.i("Coords", latString + lonString);
+
+
                         }
 
                     }
                 }, Looper.getMainLooper());
     }
 }
-
-
-//    Intent intent = getIntent();
-//                            startLat = Double.parseDouble(intent.getExtras().getString("lat"));
-//                                    startLon = Double.parseDouble(intent.getExtras().getString("lon"));
-//                                    distance_text.setText(String.format("Distance to car: %s meters.", CalculationByDistance(startLat, latitude, startLon, longitude)));
-//                                    textLocation.setText(String.format("Latitude: %s Longitude: %s", latitude, longitude));

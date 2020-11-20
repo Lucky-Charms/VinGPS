@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             );
         }
     }
+
     public void addMocks() {
         Amplify.API.mutate(
                 ModelMutation.create(Car.builder()

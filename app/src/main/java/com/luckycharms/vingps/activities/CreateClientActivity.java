@@ -52,7 +52,17 @@ public class CreateClientActivity extends AppCompatActivity {
                         response -> Log.i("CreateClientActivityAmplify", "Successfully created new client"),
                         error -> Log.e("CreateClientActivityAmplify", error.toString()));
 
-                startActivity(new Intent(CreateClientActivity.this, ClientDetailActivity.class));
+                Intent intent = new Intent(CreateClientActivity.this, ClientDetailActivity.class);
+                intent.putExtra("id", client.getId());
+                intent.putExtra("firstName", client.getFirstName());
+                intent.putExtra("lastName", client.getLastName());
+                intent.putExtra("email", client.getEmail());
+                intent.putExtra("phone", client.getPhone());
+                intent.putExtra("license", client.getLicense());
+                intent.putExtra("licenseImageURL", client.getLicenseImageUrl());
+                intent.putExtra("lastSalesPerson", client.getLastSalesPerson());
+                Log.i("Amplify.SearchClient", "You are trying to view client: " + client.getFirstName());
+                startActivity(intent);
                 finish();
             }
         });
