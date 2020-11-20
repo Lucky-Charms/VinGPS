@@ -1,24 +1,42 @@
 package com.luckycharms.vingps.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Car;
 import com.amplifyframework.datastore.generated.model.Client;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.luckycharms.vingps.R;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+
 public class VehicleDetailActivity extends AppCompatActivity {
+    private FusedLocationProviderClient client;
+    private static final int REQUEST_CODE_LOCATION_PERMISSION = 1;
+    public String latString;
+    public String lonString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +78,8 @@ public class VehicleDetailActivity extends AppCompatActivity {
                 lat = intent.getExtras().getString("lat");
                 lon = intent.getExtras().getString("lon");
 
+
+
                 Intent goToLocation = new Intent(VehicleDetailActivity.this, VicLocationActivity.class);
                 goToLocation.putExtra("lat", lat);
                 goToLocation.putExtra("lon", lon);
@@ -82,21 +102,12 @@ public class VehicleDetailActivity extends AppCompatActivity {
                         ModelQuery.get(Car.class, itemId),
                         response -> {
                             Log.i("Success: Grabbing car item", response.getData().toString());
-//                            Car carItemTemp = response.getData();
-//                            ModelQuery.get(Client.class, clientId),
-//                            success -> {
-//                                Log.i("Success: Grabbing client item")
-//
-//                                }
-//                            Car carItem = response.getData();
-//                            carItem.status = true;
-//                            Car carItem = response.getData().copyOfBuilder()
-//                                    .status(true)
-//                                    .client(response.getData().getClient())
-//                                    .id(itemId).build();
-//                            Amplify.API.mutate(ModelMutation.update(carItem),
-//                                    result -> Log.i("Success: Updating car status", result.getData().toString()),
-//                                    error -> Log.e("Updating car status", error.toString()));
+                            Car carItem = response.getData().copyOfBuilder()
+                                    .status(true)
+                                    .id(itemId).build();
+                            Amplify.API.mutate(ModelMutation.update(carItem),
+                                    result -> Log.i("Success: Updating car status", result.getData().toString()),
+                                    error -> Log.e("Updating car status", error.toString()));
                         },
                         error -> Log.e("Updating car status", error.toString())
                 );
@@ -109,19 +120,102 @@ public class VehicleDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 endTestDriveButton.setVisibility(View.GONE);
                 startTestDriveButton.setVisibility(View.VISIBLE);
-                Amplify.API.query(
-                        ModelQuery.get(Car.class, itemId),
-                        response -> {
-                            Log.i("Success: Grabbing car item", response.getData().toString());
-                            Car carItem = response.getData();
-                            carItem.status = false;
-                            Amplify.API.mutate(ModelMutation.update(carItem),
-                                    result -> Log.i("Success: Updating car status", result.getData().toString()),
-                                    error -> Log.e("Updating car status", error.toString()));
-                        },
-                        error -> Log.e("Updating car status", error.toString())
-                );
+                if (ContextCompat.checkSelfPermission(
+                        getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(
+                            VehicleDetailActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            REQUEST_CODE_LOCATION_PERMISSION
+                    );
+                } else {
+                    getCurrentLocation();
+                    Amplify.API.query(
+                            ModelQuery.get(Car.class, itemId),
+                            response -> {
+                                Log.i("Success: Grabbing car item", response.getData().toString());
+                                Car carItem = response.getData().copyOfBuilder()
+                                        .status(false).lat(latString).lon(lonString)
+                                        .id(itemId).build();
+                                Amplify.API.mutate(ModelMutation.update(carItem),
+                                        result -> Log.i("Success: Updating car status", result.getData().toString()),
+                                        error -> Log.e("Updating car status", error.toString()));
+                            },
+                            error -> Log.e("Updating car status", error.toString())
+                    );
+                }
             }
         });
+
+//        findViewById(R.id.endTestDriveButton).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (ContextCompat.checkSelfPermission(
+//                        getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION
+//                ) != PackageManager.PERMISSION_GRANTED) {
+//                    ActivityCompat.requestPermissions(
+//                            VicLocationActivity.this,
+//                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+//                            REQUEST_CODE_LOCATION_PERMISSION
+//                    );
+//                } else {
+//                    getCurrentLocation();
+//                }
+//            }
+//        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getCurrentLocation();
+            } else {
+                Toast.makeText(this, "Location Permission Denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void getCurrentLocation() {
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(1000);
+        locationRequest.setFastestInterval(3000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        LocationServices.getFusedLocationProviderClient(VehicleDetailActivity.this)
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
+
+                    @Override
+                    public void onLocationResult(LocationResult locationResult) {
+                        double startLat;
+                        double startLon;
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(VehicleDetailActivity.this)
+                                .removeLocationUpdates(this);
+                        if (locationResult != null && locationResult.getLocations().size() > 0) {
+                            int latestLocationIndex = locationResult.getLocations().size() - 1;
+                            double latitude = locationResult.getLocations().get(latestLocationIndex).getLatitude();
+                            double longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+
+                            latString = Double.toString(latitude);
+                            lonString = Double.toString(longitude);
+
+                            Log.i("Coords", latString + lonString);
+                        }
+
+                    }
+                }, Looper.getMainLooper());
     }
 }
+
+
+//    Intent intent = getIntent();
+//                            startLat = Double.parseDouble(intent.getExtras().getString("lat"));
+//                                    startLon = Double.parseDouble(intent.getExtras().getString("lon"));
+//                                    distance_text.setText(String.format("Distance to car: %s meters.", CalculationByDistance(startLat, latitude, startLon, longitude)));
+//                                    textLocation.setText(String.format("Latitude: %s Longitude: %s", latitude, longitude));

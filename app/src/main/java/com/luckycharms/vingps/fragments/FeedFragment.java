@@ -77,11 +77,13 @@ public class FeedFragment extends Fragment implements CarSearchRecyclerViewAdapt
                 ModelQuery.list(Car.class),
                 response -> {
                     int counter = 0;
-                    for (Car car : response.getData()) {
-                        if (car.getStatus().equals(true)) {
-                            checkedOutCars.add(car);
+                    if(response.getData() != null) {
+                        for (Car car : response.getData()) {
+                            if (car.getStatus().equals(true)) {
+                                checkedOutCars.add(car);
+                            }
+                            counter++;
                         }
-                        counter++;
                     }
                     handler.sendEmptyMessage(1);
                     Log.i("Amplify.CheckedOutCars", Integer.toString(counter) + " Items Returned");
