@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_green"
+    tools:context=".activities.ClientDetailActivity">
+
+    <TextView
+        android:id="@+id/clientDetailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Client Information"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/clientDetailFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Name"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/clientDetailLastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/clientDetailLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Last Name"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/clientDetailPhone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientDetailFirstName" />
+
+    <TextView
+        android:id="@+id/clientDetailPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/clientDetailEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientDetailLastName" />
+
+    <TextView
+        android:id="@+id/clientDetailEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/clientDetailLastSalesPerson"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientDetailPhone" />
+
+    <TextView
+        android:id="@+id/clientDetailLastSalesPerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sales Person"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/clientDetailLicense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientDetailEmail" />
+
+    <TextView
+        android:id="@+id/clientDetailLicense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="License Number"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientDetailLastSalesPerson" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="181dp"
+        android:layout_height="193dp"
+        app:layout_constraintBottom_toTopOf="@+id/clientDetailFirstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clientDetailTitle"
+        app:srcCompat="@drawable/ic_profile" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="License Number"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientDetailLicense"
+        app:layout_constraintEnd_toEndOf="@+id/clientDetailLicense"
+        app:layout_constraintStart_toStartOf="@+id/clientDetailLicense" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="Last Sales Person"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientDetailLastSalesPerson"
+        app:layout_constraintEnd_toEndOf="@+id/clientDetailLastSalesPerson"
+        app:layout_constraintStart_toStartOf="@+id/clientDetailLastSalesPerson" />
+
+    <TextView
+        android:id="@+id/clientFirstNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:text="First Name"
+        app:layout_constraintBottom_toBottomOf="@+id/clientDetailFirstName"
+        app:layout_constraintEnd_toEndOf="@+id/clientDetailFirstName"
+        app:layout_constraintStart_toStartOf="@+id/clientDetailFirstName" />
+
+    <TextView
+        android:id="@+id/clientFirstNameTitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="Email"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientDetailEmail"
+        app:layout_constraintEnd_toEndOf="@+id/clientDetailEmail"
+        app:layout_constraintStart_toStartOf="@+id/clientDetailEmail" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="68dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="Last Name"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientDetailLastName"
+        app:layout_constraintEnd_toEndOf="@+id/clientDetailLastName"
+        app:layout_constraintStart_toStartOf="@+id/clientDetailLastName" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:text="Phone Number"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/clientDetailPhone"
+        app:layout_constraintEnd_toEndOf="@+id/clientDetailPhone"
+        app:layout_constraintStart_toStartOf="@+id/clientDetailPhone" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

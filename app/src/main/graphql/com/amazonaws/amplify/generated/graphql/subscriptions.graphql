@@ -1,0 +1,133 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateCar {
+  onCreateCar {
+    id
+    make
+    model
+    year
+    color
+    price
+    vin
+    lat
+    lon
+    status
+    imageUrl
+    lastUserCheckedOut
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCar {
+  onUpdateCar {
+    id
+    make
+    model
+    year
+    color
+    price
+    vin
+    lat
+    lon
+    status
+    imageUrl
+    lastUserCheckedOut
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCar {
+  onDeleteCar {
+    id
+    make
+    model
+    year
+    color
+    price
+    vin
+    lat
+    lon
+    status
+    imageUrl
+    lastUserCheckedOut
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateSalesPerson {
+  onCreateSalesPerson {
+    id
+    email
+    firstName
+    lastName
+    phone
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateSalesPerson {
+  onUpdateSalesPerson {
+    id
+    email
+    firstName
+    lastName
+    phone
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteSalesPerson {
+  onDeleteSalesPerson {
+    id
+    email
+    firstName
+    lastName
+    phone
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateClient {
+  onCreateClient {
+    id
+    firstName
+    lastName
+    phone
+    email
+    lastSalesPerson
+    license
+    licenseImageUrl
+    notes
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateClient {
+  onUpdateClient {
+    id
+    firstName
+    lastName
+    phone
+    email
+    lastSalesPerson
+    license
+    licenseImageUrl
+    notes
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteClient {
+  onDeleteClient {
+    id
+    firstName
+    lastName
+    phone
+    email
+    lastSalesPerson
+    license
+    licenseImageUrl
+    notes
+    createdAt
+    updatedAt
+  }
+}
